@@ -1,0 +1,9 @@
+{
+  "name": "lausanne",
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "dependencies": {
+    "hyperscript": "2.0.2",
+    "solid-js": "1.6.11"
+  }
+}
