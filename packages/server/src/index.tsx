@@ -24,9 +24,18 @@ const vendor = path.resolve("./src");
 // });
 
 app.get("/", async (_, response) => {
-  console.log(isServer);
   const html = fs.readFileSync(`${root}/index.html`, "utf-8");
-  const todos = renderToString(() => <h1>Hmm</h1>);
+  const todos = renderToString(() => {
+    const attrs = { shadowroot: "open" };
+
+    return (
+      <section>
+        <template {...attrs}>
+          <h1>Hmm</h1>
+        </template>
+      </section>
+    );
+  });
   response.send(fmt(html, { todos, styles: "" }));
 });
 
