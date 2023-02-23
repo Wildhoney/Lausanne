@@ -1,12 +1,13 @@
 import express from "express";
 import * as path from "node:path";
 import { h, template, render } from "lausanne";
-import App from "app";
+import App_ from "app";
+
+const App = App_ as any;
 
 const app = express();
-
-const root: string = path.resolve("./src");
-const vendor = path.resolve("../app/dist");
+const root = path.resolve("./src");
+const vendor = path.resolve("..");
 
 // const options = {
 //   path: process.env["DOMAIN"]
@@ -21,11 +22,10 @@ const vendor = path.resolve("../app/dist");
 // });
 
 app.get("/", async (_, response) => {
-  // response.send(render(template({ title: "Adam", app: <App /> })));
-  response.send(render(<App />));
+  response.send(render(template({ title: "Adam", app: <App /> })));
 });
 
-app.use("/vendor", express.static(vendor));
+app.use("/client", express.static(vendor));
 app.use(express.static(root));
 
 app.listen(3000);

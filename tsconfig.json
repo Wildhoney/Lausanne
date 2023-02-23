@@ -3,6 +3,7 @@
     "moduleResolution": "nodenext",
     "target": "esnext",
     "jsx": "react",
-    "jsxFactory": "h"
+    "jsxFactory": "h",
+    "declaration": true
   }
 }
