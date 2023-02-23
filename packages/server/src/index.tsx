@@ -22,7 +22,7 @@ const vendor = path.resolve("..");
 // });
 
 app.get("/", async (_, response) => {
-  response.send(render(template({ title: "Adam", app: <App /> })));
+  response.send(render(template({ title: "Adam", app: <div><App name="Adam" /><App name="Maria" /><App name="Imogen" /></div> })));
 });
 
 app.use("/client", express.static(vendor));

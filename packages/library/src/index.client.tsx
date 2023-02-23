@@ -2,22 +2,16 @@ import * as utils from "./utils.js";
 
 export { h } from "./utils.js";
 
-const trees = new Map<string, any>();
-
 export function render(tree, options?) {
   return utils.render(tree, { ...options, isServer: false });
 }
 
 export function create(name, getTree) {
-  const tree = getTree();
-  const fingerprint = window.btoa(utils.render(tree, { isServer: true }));
-  trees.set(fingerprint, tree);
-
   window.customElements.define(
     name,
     class Swiss extends HTMLElement {
       connectedCallback() {
-        const tree = trees.get(this.getAttribute(utils.options.attrName));
+        const tree = getTree();
         traverse(tree, this);
       }
     }
@@ -32,8 +26,13 @@ function traverse(tree: any, node: HTMLElement): void {
   );
 
   function next(tree: any) {
-    const [vnode, ...vnodes] = Array.isArray(tree) ? tree : [tree];
+    const [vnode, ...vnodes] = [].concat(tree);
+    const node = walker.currentNode as any;
 
+    if (node?.hasAttribute?.('x-swiss')) {
+      return;
+    }
+    
     if (vnode.attrs) {
       Object.entries(vnode.attrs).forEach(([attrName, eventListener]) => {
         if (typeof eventListener === "function") {

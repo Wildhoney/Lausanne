@@ -8,14 +8,10 @@ export function render(tree, options?) {
 }
 
 export function create(name, getTree) {
-  const tree = getTree();
-  const fingerprint = Buffer.from(render(tree, { isServer: true })).toString(
-    "base64"
-  );
   return h(
     name,
-    { [utils.options.attrName]: fingerprint },
-    <template shadowroot="open">{tree}</template>
+    { [utils.options.attrName]: true },
+    <template shadowroot="open">{getTree()}</template>
   );
 }
 
