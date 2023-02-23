@@ -9,7 +9,8 @@
     "types": "./dist/index.d.ts"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "format": "prettier ."
   },
   "dependencies": {
     "lausanne": "1.0.0"
