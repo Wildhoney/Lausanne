@@ -2,7 +2,15 @@
   "name": "app",
   "version": "1.0.0",
   "main": "./src/index.tsx",
+  "scripts": {
+    "build": "rollup -c rollup.config.mjs"
+  },
   "dependencies": {
-    "lausanne": "1.0.0"
+    "lausanne": "1.0.0",
+    "solid-js": "1.6.11"
+  },
+  "devDependencies": {
+    "babel-preset-solid": "1.6.10",
+    "rollup-plugin-terser": "7.0.2"
   }
 }

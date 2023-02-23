@@ -3,13 +3,13 @@ import fs from "fs";
 import path from "path";
 import fmt from "string-template";
 // import { render } from "lausanne";
-import { renderToString, isServer } from "solid-js/web";
-// import App from "app";
+import { renderToString, generateHydrationScript } from "solid-js/web";
+import App from "app";
 
 const app = express();
 
 const root: string = path.resolve("./src");
-const vendor = path.resolve("./src");
+const vendor = path.resolve("../app/dist");
 
 // const options = {
 //   path: process.env["DOMAIN"]
@@ -25,18 +25,8 @@ const vendor = path.resolve("./src");
 
 app.get("/", async (_, response) => {
   const html = fs.readFileSync(`${root}/index.html`, "utf-8");
-  const todos = renderToString(() => {
-    const attrs = { shadowroot: "open" };
-
-    return (
-      <section>
-        <template {...attrs}>
-          <h1>Hmm</h1>
-        </template>
-      </section>
-    );
-  });
-  response.send(fmt(html, { todos, styles: "" }));
+  const todos = renderToString(() => <App />);
+  response.send(fmt(html, { todos, styles: "", hydrationScript: generateHydrationScript() }));
 });
 
 app.use("/vendor", express.static(vendor));
