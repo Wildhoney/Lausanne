@@ -1,9 +1,6 @@
 import express from "express";
-import fs from "fs";
-import path from "path";
-import fmt from "string-template";
-// import { render } from "lausanne";
-import { renderToString, generateHydrationScript } from "solid-js/web";
+import * as path from "node:path";
+import { h, template, render } from "lausanne";
 import App from "app";
 
 const app = express();
@@ -24,9 +21,8 @@ const vendor = path.resolve("../app/dist");
 // });
 
 app.get("/", async (_, response) => {
-  const html = fs.readFileSync(`${root}/index.html`, "utf-8");
-  const todos = renderToString(() => <App />);
-  response.send(fmt(html, { todos, styles: "", hydrationScript: generateHydrationScript() }));
+  // response.send(render(template({ title: "Adam", app: <App /> })));
+  response.send(render(<App />));
 });
 
 app.use("/vendor", express.static(vendor));

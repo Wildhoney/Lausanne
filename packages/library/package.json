@@ -1,9 +1,25 @@
 {
   "name": "lausanne",
   "version": "1.0.0",
-  "main": "./src/index.ts",
-  "dependencies": {
-    "hyperscript": "2.0.2",
-    "solid-js": "1.6.11"
+  "main": "./src/index.tsx",
+  "type": "module",
+  "exports": {
+    "node": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "nx": {
+    "targets": {
+      "build": {
+        "inputs": [
+          "default"
+        ],
+        "outputs": [],
+        "dependsOn": [
+          "^build"
+        ]
+      }
+    }
   }
 }

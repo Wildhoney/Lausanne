@@ -1,8 +1,5 @@
-// @ts-nocheck
+import { create, h } from "lausanne";
 
-import { createSignal } from "solid-js";
-
-const [number, setNumber] = createSignal(0);
-const [name, setName] = createSignal("Adam");
-
-console.log(name());
+export default create("x-name", () => {
+  return <h1>Hello Adam!</h1>;
+});
