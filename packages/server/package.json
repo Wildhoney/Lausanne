@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node ./dist/index.js",
     "build": "tsc",
-    "format": "prettier ."
+    "format": "prettier . --write"
   },
   "dependencies": {
     "lausanne": "1.0.0",

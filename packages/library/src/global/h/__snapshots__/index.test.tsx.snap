@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`h() should be able to parse children with state 1`] = `
+{
+  "attrs": null,
+  "children": [
+    {
+      "items": [
+        "Hi ",
+      ],
+      "kind": Symbol(swiss/text),
+    },
+    {
+      "attrs": null,
+      "children": [
+        {
+          "kind": Symbol(swiss/state),
+          "value": [Function],
+        },
+      ],
+      "name": "strong",
+    },
+    {
+      "items": [
+        "!",
+      ],
+      "kind": Symbol(swiss/text),
+    },
+  ],
+  "name": "section",
+}
+`;

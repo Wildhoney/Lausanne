@@ -1,43 +1,7 @@
-import { h } from "./utils.js";
-import * as utils from "./utils.js";
+import { h } from "./global/h/index.js";
 
-export { h } from "./utils.js";
-
-export function render(tree, options?) {
-  return utils.render(tree, { ...options, isServer: true });
-}
-
-export function create(name, getTree) {
-  return h(
-    name,
-    { [utils.options.attrName]: true },
-    <template shadowroot="open">{getTree()}</template>
-  );
-}
-
-export function template({ title = "Lausanne", app }) {
-  return (
-    <html lang="en">
-      <head>
-        <title>{title}</title>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-
-        <script type="importmap">
-          {`{"imports": {
-                    "lausanne": "/client/library/dist/index.client.js"
-                }}`}
-        </script>
-
-        <script
-          type="module"
-          src="/client/app/dist/index.js"
-          async
-          defer
-        ></script>
-      </head>
-      <body>{app}</body>
-    </html>
-  );
-}
+export { h };
+export { render } from "./server/render/index.js";
+export { use } from "./global/use/index.js";
+export { create } from "./server/create/index.js";
+export { template } from "./server/template/index.js";

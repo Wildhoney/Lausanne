@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "moduleResolution": "nodenext",
+    "esModuleInterop": true,
     "target": "esnext",
     "jsx": "react",
     "jsxFactory": "h",
