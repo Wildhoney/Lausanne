@@ -1,9 +1,7 @@
 import express from "express";
 import * as path from "node:path";
-import { h, template, render } from "lausanne";
+import { h, render } from "lausanne";
 import App from "app";
-
-const App_ = App as any;
 
 const app = express();
 const root = path.resolve("./src");

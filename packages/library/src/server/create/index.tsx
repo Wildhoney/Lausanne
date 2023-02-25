@@ -2,13 +2,13 @@
 
 import { h } from "preact";
 
-export function create<Attrs>(name, Tree) {
+export function create<Attrs = Record<string, any>>(name, Tree) {
   return function Swiss(attrs: Attrs) {
     return h(
       name,
-      { "data-swiss": true },
+      attrs,
       <template shadowroot="open">
-        <Tree />
+        <Tree {...attrs} />
       </template>
     );
   };
