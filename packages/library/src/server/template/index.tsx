@@ -1,18 +1,18 @@
-import { h } from "../../global/h/index.js";
+import { h } from "preact";
 
 export function template({ title = "Lausanne", app }) {
   return (
     <html lang="en">
       <head>
         <title>{title}</title>
-        <meta charset="UTF-8" />
+        <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
 
         <script type="importmap">
           {`{"imports": {
                       "lausanne": "/client/library/dist/index.client.js",
-                      "solid-js": "https://cdn.jsdelivr.net/npm/solid-js@1.6.11/+esm"
+                      "preact": "https://cdnjs.cloudflare.com/ajax/libs/preact/10.13.0/preact.min.js"
                   }}`}
         </script>
 

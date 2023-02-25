@@ -1,9 +1,15 @@
-import { h } from "../../global/h/index.js";
+// @ts-nocheck
 
-export function create(name, getTree) {
-  return h(
-    name,
-    { "data-swiss": true },
-    <template shadowroot="open">{getTree()}</template>
-  );
+import { h } from "preact";
+
+export function create<Attrs>(name, Tree) {
+  return function Swiss(attrs: Attrs) {
+    return h(
+      name,
+      { "data-swiss": true },
+      <template shadowroot="open">
+        <Tree />
+      </template>
+    );
+  };
 }
