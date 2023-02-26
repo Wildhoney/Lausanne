@@ -8,13 +8,6 @@ export type RenderOptions = {
   node: null | HTMLElement;
 };
 
-export type StyleSheetProps = {
-  href: string;
-  media?: string;
-};
-
-export type VariablesProps = Record<string, boolean | number | string>;
-
 export type ToCamelcase = { fromKebab: () => string; fromSnake: () => string };
 
 export type FromCamelcase = { toKebab: () => string; toSnake: () => string };

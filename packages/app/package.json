@@ -27,5 +27,8 @@
         ]
       }
     }
+  },
+  "devDependencies": {
+    "@sinclair/typebox": "0.25.24"
   }
 }

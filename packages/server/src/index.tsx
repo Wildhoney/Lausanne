@@ -1,14 +1,21 @@
 import express from "express";
 import * as path from "node:path";
-import { h, render } from "lausanne";
+import { node, render } from "lausanne";
 import App from "app";
 
 const app = express();
 const root = path.resolve("./src");
 const vendor = path.resolve("..");
 
+const options = {
+  path: process.env["DOMAIN"]
+    ? `https://${process.env["DOMAIN"]}/`
+    : "http://localhost:3000/",
+  root: path.resolve("../app/src"),
+};
+
 app.get("/", async (_, response) => {
-  const app = render(<App />);
+  const app = render(<App continent="Africa" />, options);
   response.setHeader("content-type", "text/html");
   response.send(`<html lang="en">
       <head>

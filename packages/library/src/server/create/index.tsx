@@ -8,7 +8,7 @@ export function create<Attrs = Record<string, any>>(name, Tree) {
       name,
       attrs,
       <template shadowroot="open">
-        <Tree {...attrs} />
+        <Tree attrs={attrs} error={null} />
       </template>
     );
   };
