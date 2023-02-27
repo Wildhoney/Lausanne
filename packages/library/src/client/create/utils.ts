@@ -5,7 +5,7 @@ import type {
   FromCamelcase,
 } from "./types.js";
 
-export const getAttributes = (attrs: NamedNodeMap): Record<string, string> =>
+export const getAttributes = (attrs: NamedNodeMap): any =>
   Object.values(attrs).reduce((attrs, attr) => {
     const name = toCamelcase(attr.nodeName).fromKebab();
 

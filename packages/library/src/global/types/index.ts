@@ -1,5 +1,5 @@
 export type SwissTree<Attrs extends AttrsGeneric> = {
-  error: any;
+  error: null | Error;
   attrs: {
     [K in keyof Attrs]: Attrs[K] extends string ? Attrs[K] : string;
   };

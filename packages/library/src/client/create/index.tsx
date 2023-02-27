@@ -1,10 +1,8 @@
-// @ts-nocheck
-
 import { hydrate, h, VNode } from "preact";
 import { memo } from "preact/compat";
 import { AttrsGeneric, SwissTree } from "../../global/types/index.js";
 import { Attrs, Env } from "../../global/use/index.js";
-import { getAttributes } from "./utils.js";
+import { getAttributes, hasApplicableMutations } from "./utils.js";
 
 export function create<Attrs extends AttrsGeneric>(
   name: string,
@@ -55,7 +53,7 @@ export function create<Attrs extends AttrsGeneric>(
   );
 
   return memo(
-    () => h(name),
+    () => h(name, {}),
     () => true
   );
 }

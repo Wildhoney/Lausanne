@@ -1,6 +1,6 @@
 import express from "express";
 import * as path from "node:path";
-import { node, render } from "lausanne";
+import { render, node } from "lausanne";
 import App from "app";
 
 const app = express();
@@ -15,7 +15,7 @@ const options = {
 };
 
 app.get("/", async (_, response) => {
-  const app = render(<App continent="Africa" age="21" />, options);
+  const app = render(<App continent="Africa" />, options);
   response.setHeader("content-type", "text/html");
   response.send(`<html lang="en">
       <head>

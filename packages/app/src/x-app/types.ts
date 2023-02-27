@@ -14,7 +14,6 @@ export type Place = { continent: Static<typeof Continents>; country: string };
 
 export const Attrs = Type.Object({
   continent: Continents,
-  age: Type.Number(),
 });
 
 export type Attrs = Static<typeof Attrs>;

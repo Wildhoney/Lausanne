@@ -11,7 +11,8 @@
   "scripts": {
     "build": "tsc",
     "format": "prettier . --write",
-    "unit": "jest"
+    "unit": "jest",
+    "lint": "eslint src/** --fix"
   },
   "nx": {
     "targets": {
