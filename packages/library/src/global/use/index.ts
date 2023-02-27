@@ -27,7 +27,7 @@ export const use = {
   mount: (fn: EffectCallback) => useEffect(fn, []),
   unmount: (fn: EffectCallback) => useEffect(() => fn, []),
   env: () => useContext(Env),
-  attrs<M extends MapGeneric>(map: M): AttrsReturn<M> {
+  attrs<Map extends MapGeneric>(map: Map): AttrsReturn<Map> {
     const attrs = useContext(Attrs);
 
     return Object.entries(attrs).reduce(

@@ -1,56 +1,54 @@
 export function String(a: string): string {
   return a;
 }
-String._type = "string" as const;
 
 export function Int(a: string): null | number {
   const value = parseInt(a);
   return Number.isNaN(value) ? null : value;
 }
-Int._type = "int" as const;
 
-// export function BigInt(a: string): null | bigint {
-//   try {
-//     return window.BigInt(a);
-//   } catch {
-//     return null;
-//   }
-// }
+export function BigInt(a: string): null | bigint {
+  try {
+    return window.BigInt(a);
+  } catch {
+    return null;
+  }
+}
 
-// export function Float(a: string): null | number {
-//   const value = parseFloat(a);
-//   return Number.isNaN(value) ? null : value;
-// }
+export function Float(a: string): null | number {
+  const value = parseFloat(a);
+  return Number.isNaN(value) ? null : value;
+}
 
-// Float.DP =
-//   (dp: number) =>
-//   (a: string): null | number => {
-//     const value = Float(a);
-//     return value === null ? null : Float(value.toFixed(dp));
-//   };
+Float.DP =
+  (dp: number) =>
+  (a: string): null | number => {
+    const value = Float(a);
+    return value === null ? null : Float(value.toFixed(dp));
+  };
 
-// export const Bool = (a: string): null | boolean => {
-//   switch (a.toLowerCase()) {
-//     case "":
-//     case "1":
-//     case "true":
-//     case "on":
-//     case "yes":
-//       return true;
-//     case "0":
-//     case "false":
-//     case "off":
-//     case "no":
-//       return false;
-//   }
+export const Bool = (a: string): null | boolean => {
+  switch (a.toLowerCase()) {
+    case "":
+    case "1":
+    case "true":
+    case "on":
+    case "yes":
+      return true;
+    case "0":
+    case "false":
+    case "off":
+    case "no":
+      return false;
+  }
 
-//   return null;
-// };
+  return null;
+};
 
-// export function Date(a: string): null | Date {
-//   const value = new window.Date(window.Date.parse(a));
-//   return Number.isNaN(value.getTime()) ? null : value;
-// }
+export function Date(a: string): null | Date {
+  const value = new window.Date(window.Date.parse(a));
+  return Number.isNaN(value.getTime()) ? null : value;
+}
 
 // export function Array(f = String) {
 //   return (a: string): string[] => a.split(",").map((a) => f(a));
