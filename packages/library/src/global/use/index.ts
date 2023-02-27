@@ -21,32 +21,14 @@ export const use = {
   effect: useEffect,
   callback: useCallback,
   reducer: useReducer,
-  // mount(fn: EffectCallback) {
-  //     useEffect(fn, []);
-  // },
-  // unmount(fn: EffectCallback) {
-  //     useEffect(() => fn, []);
-  // },
-  // env() {
-  //     return useContext(Env);
-  // },
-  path(componentUrl: string): (resourcePath: string) => string {
-    const env = useContext(Env);
-
-    return (resourcePath: string): string => {
-      if (typeof window !== "undefined")
-        return new URL(resourcePath, componentUrl).href;
-
-      return "";
-
-      // const url = componentUrl.replace('file://', '') ?? '';
-      // return !env.path || !env.root
-      //     ? resourcePath
-      //     : `${env.path.replace(/(\/)*$/g, '')}/${url
-      //           .replace(env.root, '')
-      //           .replace(/^(\/)*/g, '')
-      //           .replace(/\/[^/]*$/i, '')}/${resourcePath}`;
-    };
+  mount(fn) {
+    useEffect(fn, []);
+  },
+  unmount(fn) {
+    useEffect(() => fn, []);
+  },
+  env() {
+    return useContext(Env);
   },
   // attrs<Attrs>(map: Partial<Attrs>): Record<string, string> {
   //     const attrs = useContext(Attrs);
@@ -55,10 +37,6 @@ export const use = {
   //         {}
   //     );
   // },
-  // dispatch() {
-  //     const env = useContext(Env);
-  //     return useMemo(() => env.node instanceof HTMLElement && dispatchEvent(env.node), [env.node]);
-  // }
 };
 
 // export const node = {

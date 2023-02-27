@@ -9,9 +9,9 @@ const vendor = path.resolve("..");
 
 const options = {
   path: process.env["DOMAIN"]
-    ? `https://${process.env["DOMAIN"]}/`
-    : "http://localhost:3000/",
-  root: path.resolve("../app/src"),
+    ? `https://${process.env["DOMAIN"]}/client`
+    : "http://localhost:3000/client",
+  root: vendor,
 };
 
 app.get("/", async (_, response) => {
