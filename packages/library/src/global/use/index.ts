@@ -8,8 +8,7 @@ import {
   useReducer,
   useState,
 } from "preact/hooks";
-import { AttrsGeneric } from "../types/index.js";
-import { AttrsArg, AttrsContext, AttrsReturn, EnvContext } from "./types.js";
+import { AttrsContext, AttrsReturn, EnvContext, MapGeneric } from "./types.js";
 
 export const Env = createContext<EnvContext>({
   path: null,
@@ -28,15 +27,15 @@ export const use = {
   mount: (fn: EffectCallback) => useEffect(fn, []),
   unmount: (fn: EffectCallback) => useEffect(() => fn, []),
   env: () => useContext(Env),
-  attrs<Attrs extends AttrsGeneric>(map: AttrsArg<Attrs>): AttrsReturn<Attrs, typeof map> {
+  attrs<M extends MapGeneric>(map: M): AttrsReturn<M> {
     const attrs = useContext(Attrs);
-    
+
     return Object.entries(attrs).reduce(
       (attrs, [key, value]) => ({
         ...attrs,
         [key]: (map[key] ?? String)(value),
       }),
       {}
-    ) as AttrsReturn<Attrs, typeof map>;
+    ) as AttrsReturn<typeof map>;
   },
 };

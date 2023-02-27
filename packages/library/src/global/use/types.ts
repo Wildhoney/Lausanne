@@ -1,5 +1,4 @@
 import * as type from "../transformers/index.js";
-import { AttrsGeneric } from "../types/index.js";
 
 export type EnvContext = {
   path: null | string;
@@ -9,15 +8,15 @@ export type EnvContext = {
 
 export type AttrsContext = Record<string, string>;
 
-export type AttrsArg<Attrs extends AttrsGeneric> = {
-  [K in keyof Attrs]: typeof type.String | typeof type.Int
-}
+type ValueOf<T> = T[keyof T];
 
 type MappedTypes = {
-  string: typeof type.String
-  int: typeof type.Int
-}
+  string: typeof type.String;
+  int: typeof type.Int;
+};
 
-export type AttrsReturn<Attrs extends AttrsGeneric, Map extends AttrsArg<Attrs>> = {
-  [K in keyof Attrs]: ReturnType<MappedTypes[Map[K]['_type']]>;
-}
+export type MapGeneric = Record<string, ValueOf<MappedTypes>>;
+
+export type AttrsReturn<Map extends MapGeneric> = {
+  [K in keyof Map]: ReturnType<MappedTypes[Map[K]["_type"]]>;
+};
