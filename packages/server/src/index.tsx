@@ -15,7 +15,7 @@ const options = {
 };
 
 app.get("/", async (_, response) => {
-  const app = render(<App continent="Africa" />, options);
+  const app = render(<App continent="Africa" age="21" />, options);
   response.setHeader("content-type", "text/html");
   response.send(`<html lang="en">
       <head>

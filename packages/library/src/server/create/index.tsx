@@ -1,15 +1,22 @@
 // @ts-nocheck
 
-import { h } from "preact";
+import { h, VNode } from "preact";
+import { AttrsGeneric, SwissTree } from "../../global/types/index.js";
+import { Attrs } from "../../global/use/index.js";
 
-export function create<Attrs = Record<string, any>>(name, Tree) {
-  return function Swiss(attrs: Attrs) {
+export function create<Attrs extends AttrsGeneric>(
+  name: string,
+  Tree: (props: SwissTree<Attrs>) => VNode
+) {
+  return function Swiss() {
     return h(
       name,
       attrs,
-      <template shadowroot="open">
-        <Tree attrs={attrs} error={null} />
-      </template>
+      <Attrs.Provider value={attrs}>
+        <template shadowroot="open">
+          <Tree attrs={attrs} error={null} />
+        </template>
+      </Attrs.Provider>
     );
   };
 }

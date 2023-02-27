@@ -9,7 +9,7 @@ export const node = {
   StyleSheet({ href, media }: StyleSheetProps): VNode {
     return h("link", { rel: "stylesheet", type: "text/css", media, href });
   },
-  Variables(props: VariablesProps): VNode {
+  Variables(props: VariablesProps, container: string = ":host"): VNode {
     const vars = useMemo(() => {
       return Object.entries(props).reduce(
         (accum, [key, value]) =>
@@ -18,6 +18,6 @@ export const node = {
       );
     }, [props]);
 
-    return h("style", { type: "text/css" }, `:host { ${vars} }`);
+    return h("style", { type: "text/css" }, `${container} { ${vars} }`);
   },
 };

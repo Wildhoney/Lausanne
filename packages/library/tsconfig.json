@@ -7,6 +7,6 @@
     "jsxFactory": "h",
     "jsxFragmentFactory": "Fragment"
   },
-  "include": ["src"],
-  "exclude": ["src/*.test*"]
+  "include": ["src/**/*"],
+  "exclude": ["src/**/*.test*"]
 }

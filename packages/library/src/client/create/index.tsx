@@ -1,11 +1,15 @@
 // @ts-nocheck
 
-import { hydrate, h } from "preact";
+import { hydrate, h, VNode } from "preact";
 import { memo } from "preact/compat";
-import { Env } from "../../global/use/index.js";
+import { AttrsGeneric, SwissTree } from "../../global/types/index.js";
+import { Attrs, Env } from "../../global/use/index.js";
 import { getAttributes } from "./utils.js";
 
-export function create(name, Tree) {
+export function create<Attrs extends AttrsGeneric>(
+  name: string,
+  Tree: (props: SwissTree<Attrs>) => VNode
+) {
   window.customElements.define(
     name,
     class Swiss extends HTMLElement {
@@ -40,7 +44,9 @@ export function create(name, Tree) {
 
         hydrate(
           <Env.Provider value={this.context}>
-            <Tree attrs={attrs} error={null} />
+            <Attrs.Provider value={attrs}>
+              <Tree attrs={attrs} error={null} />
+            </Attrs.Provider>
           </Env.Provider>,
           root
         );

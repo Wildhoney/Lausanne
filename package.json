@@ -9,7 +9,8 @@
     "build": "nx run-many --target=build",
     "start": "nx run-many --target=start",
     "format": "nx run-many --target=format",
-    "unit": "nx run-many --target=unit"
+    "unit": "nx run-many --target=unit",
+    "test": "yarn unit"
   },
   "devDependencies": {
     "@types/jest": "29.4.0",

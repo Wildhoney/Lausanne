@@ -4,7 +4,8 @@
     "esModuleInterop": true,
     "target": "esnext",
     "jsx": "react",
-    "jsxFactory": "node.h","jsxFragmentFactory": "node.Fragment",
+    "jsxFactory": "node.h",
+    "jsxFragmentFactory": "node.Fragment",
     "declaration": true
   }
 }
