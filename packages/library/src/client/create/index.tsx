@@ -12,6 +12,7 @@ export function create<Attrs extends AttrsGeneric>(
     name,
     class Swiss extends HTMLElement {
       private observer?: MutationObserver;
+
       private context = {
         path: window.location.origin,
         root: null,

@@ -1,9 +1,9 @@
-import { VNode, create, node, use } from "lausanne";
+import { create, node, use } from "lausanne";
 
 import { Attrs } from "./types.js";
 import { places } from "./utils.js";
 
-export default create<Attrs>("x-app", ({ error, attrs }): VNode<number> => {
+export default create<Attrs>("x-app", ({ error, attrs }) => {
   const path = use.path(import.meta.url);
   // const parsedAttrs = use.attrs<Attrs>({ logo: type.String });
   const [index, setIndex] = use.state<number>(0);
@@ -13,6 +13,7 @@ export default create<Attrs>("x-app", ({ error, attrs }): VNode<number> => {
 
   return (
     <>
+      {error.message}
       <node.StyleSheet href={path("../../styles/index.css")} />
 
       <section>

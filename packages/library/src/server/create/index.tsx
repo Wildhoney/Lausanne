@@ -1,18 +1,14 @@
 // @ts-nocheck
 
 import { h, VNode } from "preact";
-import {
-  AttrsGeneric,
-  SwissAttrs,
-  SwissTree,
-} from "../../global/types/index.js";
+import { AttrsGeneric, SwissAttrs } from "../../global/types/index.js";
 import { Attrs } from "../../global/use/index.js";
 
 export function create<Attrs extends AttrsGeneric>(
   name: string,
   Tree: (attrs: SwissAttrs<Attrs>) => VNode
 ) {
-  return function Swiss(attrs) {
+  return function Swiss(attrs: Attrs) {
     return h(
       name,
       attrs,
