@@ -1,5 +1,6 @@
 import { createContext } from "preact";
 import {
+  EffectCallback,
   useCallback,
   useContext,
   useEffect,
@@ -7,7 +8,8 @@ import {
   useReducer,
   useState,
 } from "preact/hooks";
-import { AttrsContext, EnvContext } from "./types.js";
+import { AttrsGeneric } from "../types/index.js";
+import { AttrsArg, AttrsContext, AttrsReturn, EnvContext } from "./types.js";
 
 export const Env = createContext<EnvContext>({
   path: null,
@@ -23,17 +25,18 @@ export const use = {
   effect: useEffect,
   callback: useCallback,
   reducer: useReducer,
-  mount: (fn) => useEffect(fn, []),
-  unmount: (fn) => useEffect(() => fn, []),
+  mount: (fn: EffectCallback) => useEffect(fn, []),
+  unmount: (fn: EffectCallback) => useEffect(() => fn, []),
   env: () => useContext(Env),
-  attrs<Attrs>(map: Partial<Attrs>): Record<string, string> {
+  attrs<Attrs extends AttrsGeneric>(map: AttrsArg<Attrs>): AttrsReturn<Attrs, typeof map> {
     const attrs = useContext(Attrs);
+    
     return Object.entries(attrs).reduce(
       (attrs, [key, value]) => ({
         ...attrs,
         [key]: (map[key] ?? String)(value),
       }),
       {}
-    );
+    ) as AttrsReturn<Attrs, typeof map>;
   },
 };

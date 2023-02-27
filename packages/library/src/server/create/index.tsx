@@ -15,7 +15,7 @@ export function create<Attrs extends AttrsGeneric>(
       h(
         "template",
         { shadowroot: "open" } as unknown,
-        <SwissTree tree={Tree} attrs={attrs} />
+        <SwissTree Tree={Tree} attrs={attrs} />
       )
     );
   };

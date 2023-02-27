@@ -20,7 +20,7 @@ export default class SwissTree extends Component<Props, State> {
 
     return (
       <Attrs.Provider value={attrs}>
-        <Tree attrs={attrs} error={this.state.error} recover="adam" />
+        <Tree attrs={attrs} error={this.state.error} />
       </Attrs.Provider>
     );
   }
