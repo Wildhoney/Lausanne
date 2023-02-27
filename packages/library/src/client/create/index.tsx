@@ -1,7 +1,7 @@
 import { hydrate, h, VNode } from "preact";
 import { memo } from "preact/compat";
+import SwissTree from "../../global/tree/index.js";
 import { AttrsGeneric, SwissAttrs } from "../../global/types/index.js";
-import { Attrs, Env } from "../../global/use/index.js";
 import { getAttributes, hasApplicableMutations } from "./utils.js";
 
 export function create<Attrs extends AttrsGeneric>(
@@ -41,14 +41,7 @@ export function create<Attrs extends AttrsGeneric>(
         const attrs = getAttributes(this.attributes);
         const root = this.shadowRoot ?? this.attachShadow({ mode: "open" });
 
-        hydrate(
-          <Env.Provider value={this.context}>
-            <Attrs.Provider value={attrs}>
-              <Tree attrs={attrs} error={null} />
-            </Attrs.Provider>
-          </Env.Provider>,
-          root
-        );
+        hydrate(<SwissTree Tree={Tree} attrs={attrs} />, root);
       }
     }
   );
