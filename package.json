@@ -11,7 +11,8 @@
     "format": "nx run-many --target=format",
     "unit": "nx run-many --target=unit",
     "lint": "nx run-many --target=lint",
-    "test": "yarn lint && yarn unit"
+    "typecheck": "nx run-many --target=typecheck",
+    "test": "yarn lint && yarn typecheck && yarn unit"
   },
   "devDependencies": {
     "@types/jest": "29.4.0",

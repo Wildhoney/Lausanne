@@ -11,7 +11,8 @@
   "scripts": {
     "build": "tsc",
     "format": "prettier . --write",
-    "lint": "eslint src/** --fix"
+    "lint": "eslint src/** --fix",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "lausanne": "1.0.0"
@@ -25,6 +26,15 @@
         "outputs": [],
         "dependsOn": [
           "^build"
+        ]
+      },
+      "typecheck": {
+        "inputs": [
+          "default"
+        ],
+        "outputs": [],
+        "dependsOn": [
+          "build"
         ]
       }
     }

@@ -3,7 +3,7 @@ import { VNode, create, node, use } from "lausanne";
 import { Attrs } from "./types.js";
 import { places } from "./utils.js";
 
-export default create<Attrs>("x-app", ({ error, attrs }): VNode => {
+export default create<Attrs>("x-app", ({ error, attrs }): VNode<number> => {
   const path = use.path(import.meta.url);
   // const parsedAttrs = use.attrs<Attrs>({ logo: type.String });
   const [index, setIndex] = use.state<number>(0);

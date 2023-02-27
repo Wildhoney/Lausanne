@@ -12,7 +12,8 @@
     "build": "tsc",
     "format": "prettier . --write",
     "unit": "jest",
-    "lint": "eslint src/** --fix"
+    "lint": "eslint src/** --fix",
+    "typecheck": "tsc --noEmit"
   },
   "nx": {
     "targets": {
@@ -23,6 +24,15 @@
         "outputs": [],
         "dependsOn": [
           "^build"
+        ]
+      },
+      "typecheck": {
+        "inputs": [
+          "default"
+        ],
+        "outputs": [],
+        "dependsOn": [
+          "build"
         ]
       }
     }

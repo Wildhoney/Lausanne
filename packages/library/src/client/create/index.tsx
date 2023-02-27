@@ -1,12 +1,12 @@
 import { hydrate, h, VNode } from "preact";
 import { memo } from "preact/compat";
-import { AttrsGeneric, SwissTree } from "../../global/types/index.js";
+import { AttrsGeneric, SwissAttrs } from "../../global/types/index.js";
 import { Attrs, Env } from "../../global/use/index.js";
 import { getAttributes, hasApplicableMutations } from "./utils.js";
 
 export function create<Attrs extends AttrsGeneric>(
   name: string,
-  Tree: (props: SwissTree<Attrs>) => VNode
+  Tree: (attrs: SwissAttrs<Attrs>) => VNode
 ) {
   window.customElements.define(
     name,
