@@ -1,0 +1,43 @@
+:host {
+  background-color: rgba(0, 0, 0, 0.055);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+/* textarea {
+  resize: both;
+  background: transparent;
+  border: 0;
+} */
+
+section {
+  display: inline-grid;
+  grid-auto-flow: row;
+  justify-items: center;
+  padding: 50px 100px;
+  grid-gap: 10px;
+}
+
+img {
+  height: 150px;
+  width: 150px;
+}
+
+p.description {
+  font-size: clamp(10px, 1vw, 16px);
+  font-style: italic;
+}
+
+p.description span {
+  text-transform: capitalize;
+}
+
+p.celsius {
+  font-size: clamp(10px, 5vw, 55px);
+  font-weight: bold;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+}

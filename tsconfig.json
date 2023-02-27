@@ -3,6 +3,7 @@
     "moduleResolution": "nodenext",
     "esModuleInterop": true,
     "target": "esnext",
+    "strict": false,
     "jsx": "react",
     "jsxFactory": "node.h",
     "jsxFragmentFactory": "node.Fragment",

@@ -1,4 +1,5 @@
 import { Static, Type } from "@sinclair/typebox";
+import { places } from "./utils.js";
 
 const Continents = Type.Union([
   Type.Literal("Asia"),
@@ -17,3 +18,16 @@ export const Attrs = Type.Object({
 });
 
 export type Attrs = Static<typeof Attrs>;
+
+// ---
+
+export const Weather = Type.Object({
+  main: Type.Object({
+    temp: Type.Number(),
+  }),
+  weather: Type.Array(
+    Type.Object({ description: Type.String() }, { minProperties: 1 })
+  ),
+});
+
+export type Weather = Static<typeof Weather>;

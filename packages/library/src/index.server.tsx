@@ -8,7 +8,6 @@ export * as type from "./global/transformers/index.js";
 export { Fragment, VNode } from "preact";
 export { use } from "./server/use/index.js";
 export { create } from "./server/create/index.js";
-export { template } from "./server/template/index.js";
 
 export { h };
 

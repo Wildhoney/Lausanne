@@ -1,1 +1,1 @@
-export { default } from "./x-app/index.js";
+export { default } from "./x-weather/index.js";
