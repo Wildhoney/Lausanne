@@ -1,0 +1,32 @@
+section.meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: masonry;
+  padding: 20px;
+  grid-gap: 20px;
+}
+
+section.meta div.detail {
+  padding: 5px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 10px;
+  justify-content: start;
+  background: linear-gradient(25deg, rgba(0, 0, 0, 0.025), rgba(0, 0, 0, 0.05));
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+}
+
+section.meta div.detail img.icon {
+  width: 30px;
+  height: 30px;
+}
+
+section.meta div.detail div.value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.65);
+}

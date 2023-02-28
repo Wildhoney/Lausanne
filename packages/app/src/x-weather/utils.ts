@@ -1,4 +1,5 @@
-import { Weather } from "./types.js";
+import { use } from "lausanne";
+import { UseWeatherReturn, Weather } from "./types.js";
 
 export const places = [
   { city: "Amesbury", country: "UK" },
@@ -71,3 +72,19 @@ export const gradientColours = [
   "#f0f3ff",
   "#fff0fe",
 ];
+
+export function useWeather(city: string): UseWeatherReturn {
+  const [weather, setWeather] = use.state<null | Weather>(null);
+  const [isLoading, setIsLoading] = use.state<boolean>(true);
+
+  use.effect(() => {
+    setIsLoading(true);
+
+    fetch(city).then((weather) => {
+      setWeather(weather);
+      setIsLoading(false);
+    });
+  }, [city]);
+
+  return { isLoading, weather };
+}

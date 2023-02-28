@@ -1,0 +1,51 @@
+section.city {
+  grid-area: main;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 3px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+section.city > section {
+  padding: 20px;
+}
+
+section.city > section:first-of-type {
+  background: linear-gradient(25deg, var(--gradient-colour), #eee, #ddd);
+  background: transition 5s;
+  border-radius: 3px 0 0 3px;
+  box-shadow: inset -15px 0 15px -15px rgba(0, 0, 0, 0.1);
+}
+
+section.city > section:last-of-type {
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-left: none;
+  border-radius: 0 3px 3px 0;
+  position: relative;
+}
+
+/* section.city > section:last-of-type::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  transform: translate(-10px, -50px) rotate(45deg);
+  rotate: 45dreg;
+  position: absolute;
+  bottom: 0;
+  background-color: white;
+  box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.05);
+} */
+
+section.city div.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* display: grid;
+  grid-gap: 5px;
+  grid-auto-flow: row;
+  align-content: start;
+  align-content: center;
+  justify-content: center; */
+}

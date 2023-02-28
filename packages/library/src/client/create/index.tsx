@@ -43,9 +43,8 @@ export function create<Attrs extends AttrsGeneric>(
       render() {
         const attrs = getAttributes(this.attributes);
         const root = this.shadowRoot ?? this.attachShadow({ mode: "open" });
-        const patch = this.hydrate ? hydrate : render;
 
-        patch(
+        render(
           <Env.Provider value={this.context}>
             <SwissTree Tree={Tree} attrs={attrs} />
           </Env.Provider>,

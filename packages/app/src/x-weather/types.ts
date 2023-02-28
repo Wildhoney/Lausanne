@@ -34,8 +34,13 @@ export const Weather = Type.Object({
   ),
   coord: Type.Object({
     lon: Type.Number(),
-    lat: Type.Number()
-  })
+    lat: Type.Number(),
+  }),
 });
 
 export type Weather = Static<typeof Weather>;
+
+export type UseWeatherReturn = {
+  isLoading: boolean;
+  weather: null | Weather;
+};

@@ -2,16 +2,24 @@ section.forecast {
   display: inline-grid;
   grid-auto-flow: row;
   justify-items: center;
+  text-align: center;
 }
 
 section.forecast img {
-  height: 150px;
-  width: 150px;
+  max-height: 150px;
+  max-width: 150px;
+}
+
+@container (max-width: 480px) {
+  section.forecast img {
+    display: none;
+  }
 }
 
 section.forecast p.description {
   font-size: clamp(10px, 1vw, 16px);
   font-style: italic;
+  color: color-contrast(black);
 }
 
 section.forecast p.description span {

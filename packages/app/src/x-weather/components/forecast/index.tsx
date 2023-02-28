@@ -10,8 +10,9 @@ export default function Forecast({ city, weather, unit }: Props) {
     <section class="forecast">
       <img
         src={path(
-          `../../../../src/x-weather/images/cities/${toSlug(city)}.png`
+          `../../../../src/x-weather/images/places/${toSlug(city)}.png`
         )}
+        part="logo"
         alt={city}
       />
 

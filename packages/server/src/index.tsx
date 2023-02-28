@@ -26,10 +26,13 @@ app.get("/", async (_, response) => {
 
         <style type="text/css">
           body {
-
             display: flex;
             align-items: center;
             justify-content: center;
+          }
+
+          x-weather::part(logo) {
+            // filter: grayscale(100%);
           }
         </style>
 

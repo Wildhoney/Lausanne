@@ -1,59 +1,25 @@
+@import "./components/city/styles.css";
 @import "./components/units/styles.css";
 @import "./components/forecast/styles.css";
 @import "./components/item/styles.css";
-@import "./components/cities/styles.css";
+@import "./components/places/styles.css";
 @import "./components/logo/styles.css";
-@import "./components/coords/styles.css";
+@import "./components/coordinates/styles.css";
+@import "./components/meta/styles.css";
 
 :host {
-  display: inline-flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
 }
 
+/* For Mobile Devices – 320px — 480px.
+iPads and Tablets – 481px — 768px.
+Laptops and small screen – 769px — 1024px.
+Large screens and Desktops – 1025px — 1200px.
+TV and Extra Large Screens – 1201px and more. */
+
 section.weather {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-radius: 3px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.1);
   position: relative;
-}
-
-section.weather > section {
-  padding: 20px;
-}
-
-section.weather > section:first-of-type {
-  background: linear-gradient(25deg, var(--gradient-colour), #eee, #ddd);
-  background: transition 5s;
-  border-radius: 3px 0 0 3px;
-  box-shadow: inset -15px 0 15px -15px rgba(0, 0, 0, 0.1);
-}
-
-section.weather > section:last-of-type {
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  border-left: none;
-  border-radius: 0 3px 3px 0;
-  position: relative;
-}
-
-section.weather > section:last-of-type::after {
-  content: "";
-  width: 20px;
-  height: 20px;
-  transform: translate(-10px, -50px) rotate(45deg);
-  rotate: 45dreg;
-  position: absolute;
-  bottom: 0;
-  background-color: white;
-  box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.05);
-}
-
-section.details {
-  display: grid;
-  grid-gap: 5px;
-  grid-auto-flow: row;
-  align-content: start;
 }

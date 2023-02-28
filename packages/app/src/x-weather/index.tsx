@@ -2,22 +2,19 @@ import { create, node, use } from "lausanne";
 import Units from "./components/units/index.js";
 import Forecast from "./components/forecast/index.js";
 
-import type { Attrs, Weather } from "./types.js";
+import type { Attrs } from "./types.js";
 import { Unit } from "./types.js";
-import { fetch, gradientColours } from "./utils.js";
-import Cities from "./components/cities/index.js";
+import { gradientColours, useWeather } from "./utils.js";
+import Places from "./components/places/index.js";
 import Meta from "./components/meta/index.js";
 import Logo from "./components/logo/index.js";
-import Coords from "./components/coords/index.js";
+import Coordinates from "./components/coordinates/index.js";
+import City from "./components/city/index.js";
 
 export default create<Attrs>("x-weather", ({ attrs }) => {
   const path = use.path(import.meta.url);
-  const [weather, setWeather] = use.state<null | Weather>(null);
   const [unit, setUnit] = use.state<Unit>(Unit.Celsius);
-
-  use.effect(() => {
-    fetch(attrs.city).then((weather) => setWeather(weather));
-  }, [attrs.city]);
+  const { isLoading, weather } = useWeather(attrs.city);
 
   const colour = use.memo(
     () => gradientColours[Math.floor(Math.random() * gradientColours.length)],
@@ -25,28 +22,41 @@ export default create<Attrs>("x-weather", ({ attrs }) => {
   );
 
   return (
-    <>
+    <section class="weather">
       {weather && (
-        <>
-          <section class="weather">
-            <section>
-              <Forecast city={attrs.city} unit={unit} weather={weather} />
-            </section>
-
-            <section class="details">
-              <Units value={unit} onChange={setUnit} />
-              <Meta weather={weather} unit={unit} />
-              <Cities value={attrs.city} />
-            </section>
-
-            <Logo />
-            <Coords value={weather.coord} />
-          </section>
-        </>
+        <City
+          city={attrs.city}
+          weather={weather}
+          unit={unit}
+          onUnitChange={setUnit}
+        />
       )}
+
+      <Logo />
 
       <node.StyleSheet href={path("../../src/x-weather/styles.css")} />
       <node.Variables gradientColour={colour} />
-    </>
+    </section>
   );
+
+  // return (
+  //   <>
+  //     <section class="weather">
+  //       {isLoading && (
+  //         <main>
+  //           <img src={path("../../src/x-weather/images/loading.svg")} />
+  //         </main>
+  //       )}
+
+  //       {/* {weather && (
+  //         <main>
+
+  //           <Logo />
+  //           {/* <Coordinates value={weather.coord} /> */}
+  //         </main>
+  //       )} */}
+  //     </section>
+
+  //   </>
+  // );
 });

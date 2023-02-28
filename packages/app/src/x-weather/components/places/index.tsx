@@ -2,7 +2,7 @@ import { Props } from "./types.js";
 import { use, node } from "lausanne";
 import { places } from "../../utils.js";
 
-export default function Cities({ value }: Props) {
+export default function Places({ value }: Props) {
   const env = use.env();
 
   const handleChange = use.callback((event) => {
@@ -10,7 +10,7 @@ export default function Cities({ value }: Props) {
   }, []);
 
   return (
-    <section class="cities">
+    <section class="places">
       <select value={value} onChange={handleChange}>
         {places.map((place) => (
           <option key={`${place.city}-${place.country}`} value={place.city}>

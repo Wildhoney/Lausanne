@@ -1,13 +1,11 @@
-
-
 a.logo {
-    position: absolute;
-    bottom: 0;
-    transform: translate(0, 40px);
-    right: 0;
-    width: 35%;
-  }
-  
-  a.logo img {
-    width: 100%;
-  }
+  position: absolute;
+  bottom: 0;
+  transform: translate(0, 40px);
+  right: 0;
+  width: clamp(100px, 35%, 150px);
+}
+
+a.logo img {
+  width: 100%;
+}
