@@ -15,7 +15,7 @@ const options = {
 };
 
 app.get("/", async (_, response) => {
-  const app = render(<App continent="Africa" />, options);
+  const app = render(<App city="London" />, options);
   response.setHeader("content-type", "text/html");
   response.send(`<html lang="en">
       <head>
@@ -23,6 +23,15 @@ app.get("/", async (_, response) => {
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
+
+        <style type="text/css">
+          body {
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        </style>
 
         <script type="importmap">
           {"imports": {

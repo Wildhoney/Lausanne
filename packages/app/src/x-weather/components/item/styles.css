@@ -1,0 +1,11 @@
+div.item {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: start;
+  grid-gap: 5px;
+  font-size: 12px;
+}
+
+div.item label {
+  color: darkgray;
+}

@@ -1,33 +1,41 @@
 import { Static, Type } from "@sinclair/typebox";
-import { places } from "./utils.js";
-
-const Continents = Type.Union([
-  Type.Literal("Asia"),
-  Type.Literal("Africa"),
-  Type.Literal("North America"),
-  Type.Literal("Europe"),
-  Type.Literal("South America"),
-  Type.Literal("Oceania"),
-  Type.Literal("Antartica"),
-]);
-
-export type Place = { continent: Static<typeof Continents>; country: string };
 
 export const Attrs = Type.Object({
-  continent: Continents,
+  city: Type.String(),
 });
 
 export type Attrs = Static<typeof Attrs>;
 
-// ---
+export const enum Unit {
+  Celsius,
+  Fahrenheit,
+}
 
 export const Weather = Type.Object({
   main: Type.Object({
     temp: Type.Number(),
+    feels_like: Type.Number(),
+    temp_min: Type.Number(),
+    temp_max: Type.Number(),
+    pressure: Type.Number(),
+    humidity: Type.Number(),
   }),
+  visibility: Type.Number(),
+  wind: Type.Object({
+    speed: Type.Number(),
+    deg: Type.Number(),
+  }),
+  timezone: Type.Number(),
   weather: Type.Array(
-    Type.Object({ description: Type.String() }, { minProperties: 1 })
+    Type.Object(
+      { description: Type.String(), icon: Type.String() },
+      { minProperties: 1 }
+    )
   ),
+  coord: Type.Object({
+    lon: Type.Number(),
+    lat: Type.Number()
+  })
 });
 
 export type Weather = Static<typeof Weather>;

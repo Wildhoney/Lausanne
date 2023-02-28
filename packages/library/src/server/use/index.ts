@@ -14,4 +14,8 @@ export const use = {
       return `${stripTrailingSlashes(env.path)}/${assetPath}`;
     };
   },
+  dispatch() {
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    return () => {};
+  },
 };

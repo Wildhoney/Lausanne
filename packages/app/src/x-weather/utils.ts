@@ -52,3 +52,22 @@ export async function fetch(city: string): Promise<Weather> {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${slug}&appid=${apiKey}&units=metric`;
   return globalThis.fetch(url).then((response) => response.json());
 }
+
+export function toFahrenheit(celsius: number) {
+  return (celsius * 9) / 5 + 32;
+}
+
+export function toSlug(name: string): string {
+  return name.replace(/ /g, "-").toLowerCase();
+}
+
+export const gradientColours = [
+  "azure",
+  "#fffff0",
+  "#fff6f0",
+  "#fff0f0",
+  "#f6fff0",
+  "#f0fffe",
+  "#f0f3ff",
+  "#fff0fe",
+];

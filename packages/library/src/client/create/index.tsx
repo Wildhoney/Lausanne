@@ -1,4 +1,4 @@
-import { hydrate, h, VNode } from "preact";
+import { hydrate, render, h, VNode } from "preact";
 import { memo } from "preact/compat";
 import SwissTree from "../../global/tree/index.js";
 import { AttrsGeneric, SwissAttrs } from "../../global/types/index.js";
@@ -19,6 +19,8 @@ export function create<Attrs extends AttrsGeneric>(
         root: null,
         node: this,
       };
+
+      private hydrate = true;
 
       connectedCallback() {
         this.observer = new window.MutationObserver(
@@ -41,13 +43,16 @@ export function create<Attrs extends AttrsGeneric>(
       render() {
         const attrs = getAttributes(this.attributes);
         const root = this.shadowRoot ?? this.attachShadow({ mode: "open" });
+        const patch = this.hydrate ? hydrate : render;
 
-        hydrate(
+        patch(
           <Env.Provider value={this.context}>
             <SwissTree Tree={Tree} attrs={attrs} />
           </Env.Provider>,
           root
         );
+
+        this.hydrate = false;
       }
     }
   );

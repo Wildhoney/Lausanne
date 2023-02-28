@@ -1,40 +1,24 @@
-:host {
-  background-color: rgba(0, 0, 0, 0.055);
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-}
-
-/* textarea {
-  resize: both;
-  background: transparent;
-  border: 0;
-} */
-
-section {
+section.forecast {
   display: inline-grid;
   grid-auto-flow: row;
   justify-items: center;
-  padding: 50px 100px;
-  grid-gap: 10px;
 }
 
-img {
+section.forecast img {
   height: 150px;
   width: 150px;
 }
 
-p.description {
+section.forecast p.description {
   font-size: clamp(10px, 1vw, 16px);
   font-style: italic;
 }
 
-p.description span {
+section.forecast p.description span {
   text-transform: capitalize;
 }
 
-p.celsius {
+section.forecast div.reading {
   font-size: clamp(10px, 5vw, 55px);
   font-weight: bold;
   margin: 0;
