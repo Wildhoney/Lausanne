@@ -39,8 +39,3 @@ export const Weather = Type.Object({
 });
 
 export type Weather = Static<typeof Weather>;
-
-export type UseWeatherReturn = {
-  isLoading: boolean;
-  weather: null | Weather;
-};

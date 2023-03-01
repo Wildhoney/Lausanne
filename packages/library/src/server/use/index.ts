@@ -34,6 +34,7 @@ export const use = {
     id: string,
     fn: DeferredFn,
     initialState: IS,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _: D
   ): DeferredResponse<IS, S> {
     const defers = useContext(Deferred);
