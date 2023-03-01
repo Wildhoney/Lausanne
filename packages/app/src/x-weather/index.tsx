@@ -5,6 +5,7 @@ import { Unit } from "./types.js";
 import { gradientColours, useWeather } from "./utils.js";
 import Logo from "./components/logo/index.js";
 import City from "./components/city/index.js";
+import Loading from "./components/loading/index.js";
 
 export default create<Attrs>("x-weather", ({ attrs }) => {
   const path = use.path(import.meta.url);
@@ -26,6 +27,8 @@ export default create<Attrs>("x-weather", ({ attrs }) => {
           onUnitChange={setUnit}
         />
       )}
+
+      <Loading value={isLoading} />
 
       <Logo />
 

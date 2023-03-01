@@ -5,6 +5,7 @@
 @import "./components/logo/styles.css";
 @import "./components/coordinates/styles.css";
 @import "./components/meta/styles.css";
+@import "./components/loading/styles.css";
 
 :host {
   display: flex;
