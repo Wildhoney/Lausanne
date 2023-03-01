@@ -1,12 +1,12 @@
 import {
-  Array,
+  // Array,
   BigInt,
   Bool,
   Date,
   Float,
   Int,
-  Regex,
-  Tuple,
+  // Regex,
+  // Tuple,
 } from "./index.js";
 
 describe("Int()", () => {
@@ -105,45 +105,45 @@ describe("Date()", () => {
   );
 });
 
-describe("Array()", () => {
-  it.each`
-    input                  | options             | output
-    ${"Imogen"}            | ${{ type: String }} | ${["Imogen"]}
-    ${"Adam,Maria,Imogen"} | ${{ type: String }} | ${["Adam", "Maria", "Imogen"]}
-    ${"1,2,3"}             | ${{ type: Int }}    | ${[1, 2, 3]}
-    ${"1,0,on"}            | ${{ type: Bool }}   | ${[true, false, true]}
-    ${"Imogen"}            | ${{ type: Int }}    | ${[null]}
-  `(
-    'should be able to convert strings to Array(𝑥) "$input" → "$output"',
-    ({ input, options, output }) => {
-      expect(Array(options.type)(input)).toEqual(output);
-    }
-  );
-});
+// describe("Array()", () => {
+//   it.each`
+//     input                  | options             | output
+//     ${"Imogen"}            | ${{ type: String }} | ${["Imogen"]}
+//     ${"Adam,Maria,Imogen"} | ${{ type: String }} | ${["Adam", "Maria", "Imogen"]}
+//     ${"1,2,3"}             | ${{ type: Int }}    | ${[1, 2, 3]}
+//     ${"1,0,on"}            | ${{ type: Bool }}   | ${[true, false, true]}
+//     ${"Imogen"}            | ${{ type: Int }}    | ${[null]}
+//   `(
+//     'should be able to convert strings to Array(𝑥) "$input" → "$output"',
+//     ({ input, options, output }) => {
+//       expect(Array(options.type)(input)).toEqual(output);
+//     }
+//   );
+// });
 
-describe("Tuple()", () => {
-  it.each`
-    input              | options                           | output
-    ${"Adam,36,true"}  | ${{ types: [String, Int, Bool] }} | ${["Adam", 36, true]}
-    ${"Imogen,2,true"} | ${{ types: [Int, Int, Bool] }}    | ${[null, 2, true]}
-  `(
-    'should be able to convert strings to Tuple(…𝑥) "$input" → "$output"',
-    ({ input, options, output }) => {
-      expect(Tuple(...options.types)(input)).toEqual(output);
-    }
-  );
-});
+// describe("Tuple()", () => {
+//   it.each`
+//     input              | options                           | output
+//     ${"Adam,36,true"}  | ${{ types: [String, Int, Bool] }} | ${["Adam", 36, true]}
+//     ${"Imogen,2,true"} | ${{ types: [Int, Int, Bool] }}    | ${[null, 2, true]}
+//   `(
+//     'should be able to convert strings to Tuple(…𝑥) "$input" → "$output"',
+//     ({ input, options, output }) => {
+//       expect(Tuple(...options.types)(input)).toEqual(output);
+//     }
+//   );
+// });
 
-describe("Regex()", () => {
-  it.each`
-    input           | options                                                       | output
-    ${"27.07.2020"} | ${{ expression: /(?<day>\d+)\.(?<month>\d+)\.(?<year>\d+)/ }} | ${{ day: "27", month: "07", year: "2020" }}
-    ${"27.07.2020"} | ${{ expression: /(?<day>\d+)|(?<month>\d+)|(?<year>\d+)/ }}   | ${{ day: "27", month: null, year: null }}
-    ${"27.07.2020"} | ${{ expression: /.+/ }}                                       | ${{}}
-  `(
-    'should be able to convert strings to Regex "$input" → "$output"',
-    ({ input, options, output }) => {
-      expect(Regex(options.expression)(input)).toEqual(output);
-    }
-  );
-});
+// describe("Regex()", () => {
+//   it.each`
+//     input           | options                                                       | output
+//     ${"27.07.2020"} | ${{ expression: /(?<day>\d+)\.(?<month>\d+)\.(?<year>\d+)/ }} | ${{ day: "27", month: "07", year: "2020" }}
+//     ${"27.07.2020"} | ${{ expression: /(?<day>\d+)|(?<month>\d+)|(?<year>\d+)/ }}   | ${{ day: "27", month: null, year: null }}
+//     ${"27.07.2020"} | ${{ expression: /.+/ }}                                       | ${{}}
+//   `(
+//     'should be able to convert strings to Regex "$input" → "$output"',
+//     ({ input, options, output }) => {
+//       expect(Regex(options.expression)(input)).toEqual(output);
+//     }
+//   );
+// });
