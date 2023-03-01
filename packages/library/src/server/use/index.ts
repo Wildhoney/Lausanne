@@ -7,6 +7,8 @@ import {
   DispatchEventPayload,
 } from "../../client/create/types.js";
 import { AttrsGeneric, SwissEvent } from "../../global/types/index.js";
+import { Deferred } from "../render/index.js";
+import { DeferredFn, DeferredResponse } from "../../global/use/types.js";
 
 export const use = {
   ...baseUse,
@@ -27,5 +29,31 @@ export const use = {
     ): void => {
       void [name, payload, options];
     };
+  },
+  deferred<S, IS = unknown, D extends unknown[] = []>(
+    id: string,
+    fn: DeferredFn,
+    initialState: IS,
+    _: D
+  ): DeferredResponse<IS, S> {
+    const defers = useContext(Deferred);
+    const data = [...defers].find((defer) => defer.id === id);
+
+    if (data) {
+      return {
+        data: data.value,
+        loading: false,
+        error: null,
+      } as DeferredResponse<IS, S>;
+    }
+
+    const defer = fn();
+    defers.add({ id, value: defer });
+
+    return {
+      data: initialState,
+      loading: true,
+      error: null,
+    } as DeferredResponse<IS, S>;
   },
 };

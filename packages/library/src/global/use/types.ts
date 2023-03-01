@@ -15,3 +15,11 @@ export type MapGeneric = Record<string, ValueOf<typeof type>>;
 export type AttrsReturn<Map extends MapGeneric> = {
   [K in keyof Map]: ReturnType<Map[K]>;
 };
+
+export type DeferredFn = (...args: any[]) => Promise<any>;
+
+export type DeferredResponse<InitialState, State> = {
+  error: Error | null;
+  loading: boolean;
+  data: InitialState | State;
+};

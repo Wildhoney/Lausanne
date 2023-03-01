@@ -1,8 +1,8 @@
 import { create, node, use } from "lausanne";
 
-import type { Attrs } from "./types.js";
+import { Attrs, Weather } from "./types.js";
 import { Unit } from "./types.js";
-import { gradientColours, useWeather } from "./utils.js";
+import { fetch, gradientColours } from "./utils.js";
 import Logo from "./components/logo/index.js";
 import City from "./components/city/index.js";
 import Loading from "./components/loading/index.js";
@@ -10,7 +10,12 @@ import Loading from "./components/loading/index.js";
 export default create<Attrs>("x-weather", ({ attrs }) => {
   const path = use.path(import.meta.url);
   const [unit, setUnit] = use.state<Unit>(Unit.Celsius);
-  const { isLoading, weather } = useWeather(attrs.city);
+  const { data, loading } = use.deferred<Weather>(
+    `x-weather/${attrs.city}`,
+    () => fetch(attrs.city),
+    null,
+    []
+  );
 
   const colour = use.memo(
     () => gradientColours[Math.floor(Math.random() * gradientColours.length)],
@@ -19,16 +24,16 @@ export default create<Attrs>("x-weather", ({ attrs }) => {
 
   return (
     <section class="weather">
-      {weather && (
+      {data && (
         <City
           city={attrs.city}
-          weather={weather}
+          weather={data as any}
           unit={unit}
           onUnitChange={setUnit}
         />
       )}
 
-      <Loading value={isLoading} />
+      <Loading value={loading} />
 
       <Logo />
 

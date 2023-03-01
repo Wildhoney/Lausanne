@@ -15,7 +15,7 @@ const options = {
 };
 
 app.get("/", async (_, response) => {
-  const app = render(<App city="London" />, options);
+  const app = await render(<App city="London" />, options);
   response.setHeader("content-type", "text/html");
   response.send(`<html lang="en">
       <head>

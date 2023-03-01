@@ -73,18 +73,40 @@ export const gradientColours = [
   "#fff0fe",
 ];
 
-export function useWeather(city: string): UseWeatherReturn {
-  const [weather, setWeather] = use.state<null | Weather>(null);
-  const [isLoading, setIsLoading] = use.state<boolean>(true);
+// export function useWeather(city: string): UseWeatherReturn {
+//   const [weather, setWeather] = use.state<null | Weather>(null);
+//   const [isLoading, setIsLoading] = use.state<boolean>(true);
 
-  use.effect(() => {
-    setIsLoading(true);
+//   use.effect(() => {
+//     setIsLoading(true);
 
-    fetch(city).then((weather) => {
-      setWeather(weather);
-      setIsLoading(false);
-    });
-  }, [city]);
+//     fetch(city).then((weather) => {
+//       setWeather(weather);
+//       setIsLoading(false);
+//     });
+//   }, [city]);
 
-  return { isLoading, weather };
-}
+//   return { isLoading, weather };
+// }
+
+// export function useDeferred(fn: any, initialState = null, deps = []) {
+//   const [loading, setLoading] = use.state(false);
+//   const [data, setData] = use.state(initialState);
+
+//   if (typeof document === 'undefined') {
+//     fn().then(result => )
+//   }
+
+//   use.effect((): void => {
+//     async function run() {
+//       console.log('client');
+//       setLoading(true);
+//       setData(await fn());
+//       setLoading(false);
+//     }
+
+//     run();
+//   }, deps);
+
+//   return { loading, data };
+// }
