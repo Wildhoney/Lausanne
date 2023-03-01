@@ -54,6 +54,7 @@ export function create<Attrs extends AttrsGeneric = Record<string, never>>(
 
   return memo(
     (attrs: Attrs) => h(name, attrs),
-    () => true
+    (nextProps, prevProps) =>
+      JSON.stringify(nextProps) === JSON.stringify(prevProps)
   );
 }

@@ -1,15 +1,18 @@
 import { Static, Type } from "@sinclair/typebox";
 import { Unit } from "../x-weather/types.js";
 
+const AttrsUnit = Type.Union([
+  Type.Literal(Unit.Celsius),
+  Type.Literal(Unit.Fahrenheit),
+]);
+
 export const Attrs = Type.Object({
+  unit: AttrsUnit,
   onUnitChange: Type.Function(
     [
       Type.Object({
         detail: Type.Object({
-          unit: Type.Union([
-            Type.Literal(Unit.Celsius),
-            Type.Literal(Unit.Fahrenheit),
-          ]),
+          unit: AttrsUnit,
         }),
       }),
     ],

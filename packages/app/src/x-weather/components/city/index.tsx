@@ -23,7 +23,10 @@ export default function City({
         </div>
       </section>
 
-      <UnitSelector onUnitChange={(event) => onUnitChange(event.detail.unit)} />
+      <UnitSelector
+        unit={unit}
+        onUnitChange={(event) => onUnitChange(event.detail.unit)}
+      />
       <Coordinates value={weather.coord} />
     </>
   );
