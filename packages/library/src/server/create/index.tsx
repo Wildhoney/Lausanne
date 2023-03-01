@@ -1,10 +1,8 @@
-// @ts-nocheck
-
 import { h, VNode } from "preact";
 import SwissTree from "../../global/tree/index.js";
 import { AttrsGeneric, SwissAttrs } from "../../global/types/index.js";
 
-export function create<Attrs extends AttrsGeneric>(
+export function create<Attrs extends AttrsGeneric = Record<string, never>>(
   name: string,
   Tree: (attrs: SwissAttrs<Attrs>) => VNode
 ) {

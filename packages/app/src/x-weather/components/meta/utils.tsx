@@ -8,19 +8,25 @@ export const metaData = [
     icon: "feels-like.png",
     getValue(weather: Weather, unit: Unit): VNode {
       return unit === Unit.Celsius ? (
-        <>{Math.round(weather.main.feels_like)}&#8451;</>
+        <>{weather.main.feels_like.toFixed(2)}&#8451;</>
       ) : (
-        <>{Math.round(toFahrenheit(weather.main.feels_like))}&#8457;</>
+        <>{toFahrenheit(weather.main.feels_like).toFixed(2)}&#8457;</>
       );
     },
   },
   {
     label: "min/max",
     icon: "min-max.png",
-    getValue(weather: Weather): VNode {
-      return (
+    getValue(weather: Weather, unit: Unit): VNode {
+      return unit === Unit.Celsius ? (
         <>
-          {weather.main.temp_min} &ndash; {weather.main.temp_max}
+          {weather.main.temp_min.toFixed(2)}&deg; &ndash;{" "}
+          {weather.main.temp_max.toFixed(2)}&deg;
+        </>
+      ) : (
+        <>
+          {toFahrenheit(weather.main.temp_min).toFixed(2)}&deg; &ndash;{" "}
+          {toFahrenheit(weather.main.temp_max).toFixed(2)}&deg;
         </>
       );
     },
@@ -29,7 +35,7 @@ export const metaData = [
     label: "pressure",
     icon: "pressure.png",
     getValue(weather: Weather): VNode {
-      return <>{weather.main.pressure}</>;
+      return <>{weather.main.pressure}p</>;
     },
   },
   {
@@ -43,7 +49,7 @@ export const metaData = [
     label: "timezone",
     icon: "timezone.png",
     getValue(weather: Weather): VNode {
-      return <>{weather.timezone}</>;
+      return <>+{weather.timezone / 60 / 60} GMT</>;
     },
   },
   {
@@ -59,7 +65,7 @@ export const metaData = [
     getValue(weather: Weather): VNode {
       return (
         <>
-          {weather.wind.speed} ({weather.wind.deg})&deg;
+          {weather.wind.speed}mph ({weather.wind.deg}&deg;)
         </>
       );
     },

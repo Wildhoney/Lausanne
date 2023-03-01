@@ -1,11 +1,11 @@
-import { hydrate, render, h, VNode } from "preact";
+import { render, h, VNode } from "preact";
 import { memo } from "preact/compat";
 import SwissTree from "../../global/tree/index.js";
 import { AttrsGeneric, SwissAttrs } from "../../global/types/index.js";
 import { Env } from "../../global/use/index.js";
 import { getAttributes, hasApplicableMutations } from "./utils.js";
 
-export function create<Attrs extends AttrsGeneric>(
+export function create<Attrs extends AttrsGeneric = Record<string, never>>(
   name: string,
   Tree: (attrs: SwissAttrs<Attrs>) => VNode
 ) {
@@ -19,8 +19,6 @@ export function create<Attrs extends AttrsGeneric>(
         root: null,
         node: this,
       };
-
-      private hydrate = true;
 
       connectedCallback() {
         this.observer = new window.MutationObserver(
@@ -50,14 +48,12 @@ export function create<Attrs extends AttrsGeneric>(
           </Env.Provider>,
           root
         );
-
-        this.hydrate = false;
       }
     }
   );
 
   return memo(
-    () => h(name, {}),
+    (attrs: Attrs) => h(name, attrs),
     () => true
   );
 }

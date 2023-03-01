@@ -46,3 +46,22 @@ section.city div.details::after {
   background-color: white;
   box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.05);
 }
+
+x-unit-selector {
+  --offset: 30px;
+
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(var(--offset), 20px);
+}
+
+x-unit-selector::part(container) {
+  width: var(--offset);
+}
+
+x-unit-selector::part(button) {
+  height: var(--offset);
+  width: var(--offset);
+}

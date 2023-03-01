@@ -1,0 +1,24 @@
+section {
+  display: grid;
+  grid-auto-flow: row;
+  width: var(--offset);
+  background-color: rgb(229, 229, 229);
+  box-shadow: inset 5px 0 5px -5px rgba(0, 0, 0, 0.075);
+}
+
+section button {
+  border: 0;
+  background-color: transparent;
+  color: #666;
+  cursor: pointer;
+  transition: background-color 0.25s;
+}
+
+section button.active {
+  background-color: var(--gradient-colour);
+  filter: brightness(90%);
+}
+
+section button:hover {
+  background-color: lightgray;
+}

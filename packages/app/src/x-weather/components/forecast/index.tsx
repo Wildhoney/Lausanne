@@ -21,9 +21,9 @@ export default function Forecast({ city, weather, unit }: Props) {
       </p>
 
       <div class="reading">
-        {unit === Unit.Celsius && <>{Math.round(weather.main.temp)}&#8451;</>}
+        {unit === Unit.Celsius && <>{weather.main.temp.toFixed(2)}&#8451;</>}
         {unit === Unit.Fahrenheit && (
-          <>{Math.round(toFahrenheit(weather.main.temp))}&#8457;</>
+          <>{toFahrenheit(weather.main.temp).toFixed(2)}&#8457;</>
         )}
       </div>
     </section>

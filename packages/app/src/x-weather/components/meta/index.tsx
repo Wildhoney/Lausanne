@@ -17,10 +17,9 @@ export default function Meta({ weather, unit }: Props): VNode {
           />
 
           <div class="item">
-          <label>{meta.label}:</label>
-            <div class='value'>{meta.getValue(weather, unit)}</div>
+            <label>{meta.label}:</label>
+            <div class="value">{meta.getValue(weather, unit)}</div>
           </div>
-          
         </div>
       ))}
     </section>
