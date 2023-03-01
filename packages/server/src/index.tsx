@@ -1,6 +1,6 @@
 import express from "express";
 import * as path from "node:path";
-import { render, node } from "lausanne";
+import { render, node, preload } from "lausanne";
 import App from "app";
 
 const app = express();
@@ -16,7 +16,7 @@ const options = {
 
 app.get("/", async (_, response) => {
   const app = await render(<App city="London" />, options);
-  response.setHeader("content-type", "text/html");
+
   response.send(`<html lang="en">
       <head>
         <title>Lausanne</title>
@@ -35,6 +35,8 @@ app.get("/", async (_, response) => {
             // filter: grayscale(100%);
           }
         </style>
+
+        ${preload(app)}
 
         <script type="importmap">
           {"imports": {
