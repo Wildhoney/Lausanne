@@ -17,11 +17,11 @@ export const use = {
       [env.node]
     );
   },
-  deferred<S, IS = unknown, D extends unknown[] = []>(
+  deferred<S, IS = unknown>(
     _: string,
     fn: DeferredFn,
     initialState: IS,
-    deps: D
+    deps: any[]
   ): DeferredResponse<IS, S> {
     const [data, setData] = use.state(initialState);
     const [loading, setLoading] = use.state<boolean>(true);

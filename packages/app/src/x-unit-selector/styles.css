@@ -19,8 +19,9 @@ section button {
 section button.active {
   background-color: var(--gradient-colour);
   filter: brightness(80%);
+  cursor: not-allowed;
 }
 
-section button:hover {
+section button:not(.active):hover {
   background-color: lightgray;
 }

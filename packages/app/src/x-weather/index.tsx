@@ -14,7 +14,7 @@ export default create<Attrs>("x-weather", ({ attrs }) => {
     `x-weather/${attrs.city}`,
     () => fetch(attrs.city),
     null,
-    []
+    [attrs.city]
   );
 
   const colour = use.memo(

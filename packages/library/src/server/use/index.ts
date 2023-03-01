@@ -30,12 +30,12 @@ export const use = {
       void [name, payload, options];
     };
   },
-  deferred<S, IS = unknown, D extends unknown[] = []>(
+  deferred<S, IS = unknown>(
     id: string,
     fn: DeferredFn,
     initialState: IS,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    _: D
+    _: any[]
   ): DeferredResponse<IS, S> {
     const defers = useContext(Deferred);
     const data = [...defers].find((defer) => defer.id === id);
