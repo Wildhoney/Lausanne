@@ -1,3 +1,4 @@
+import { AttrsGeneric, SwissEvent } from "../../global/types/index.js";
 import type {
   ToCamelcase,
   DispatchEventOptions,
@@ -27,17 +28,16 @@ export function hasApplicableMutations(
   });
 }
 
-export const dispatchEvent =
-  (node: HTMLElement) =>
-  (
-    name: string,
+export function dispatchEvent<Attrs>(node: HTMLElement) {
+  return (
+    name: Attrs extends AttrsGeneric ? SwissEvent<keyof Attrs> : string,
     payload: DispatchEventPayload,
     options: DispatchEventOptions = {}
-  ): boolean => {
+  ) => {
     const model = typeof payload === "object" ? payload : { value: payload };
 
     return node.dispatchEvent(
-      new window.CustomEvent(name, {
+      new window.CustomEvent(name as string, {
         bubbles: true,
         composed: true,
         ...options,
@@ -45,6 +45,7 @@ export const dispatchEvent =
       })
     );
   };
+}
 
 export function toCamelcase(value: string): ToCamelcase {
   const f = (separator: string) => (): string => {

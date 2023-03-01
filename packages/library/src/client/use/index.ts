@@ -9,10 +9,10 @@ export const use = {
       return new URL(resourcePath, componentUrl).href;
     };
   },
-  dispatch() {
+  dispatch<Attrs>() {
     const env = useContext(Env);
     return useMemo(
-      () => env.node instanceof HTMLElement && dispatchEvent(env.node),
+      () => env.node instanceof HTMLElement && dispatchEvent<Attrs>(env.node),
       [env.node]
     );
   },

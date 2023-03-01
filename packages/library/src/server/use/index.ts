@@ -6,6 +6,7 @@ import {
   DispatchEventOptions,
   DispatchEventPayload,
 } from "../../client/create/types.js";
+import { AttrsGeneric, SwissEvent } from "../../global/types/index.js";
 
 export const use = {
   ...baseUse,
@@ -18,9 +19,9 @@ export const use = {
       return `${stripTrailingSlashes(env.path)}/${assetPath}`;
     };
   },
-  dispatch() {
+  dispatch<Attrs>() {
     return (
-      name: string,
+      name: Attrs extends AttrsGeneric ? SwissEvent<keyof Attrs> : string,
       payload: DispatchEventPayload,
       options: DispatchEventOptions = {}
     ): void => {

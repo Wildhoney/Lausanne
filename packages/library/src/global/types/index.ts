@@ -6,3 +6,5 @@ export type SwissAttrs<Attrs extends AttrsGeneric> = {
   };
   error: null | Error;
 };
+
+export type SwissEvent<AttrKeys> = AttrKeys extends `on${infer E}` ? E : never;

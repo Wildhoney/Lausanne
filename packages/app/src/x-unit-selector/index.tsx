@@ -4,7 +4,7 @@ import { Attrs } from "./types.js";
 
 export default create<Attrs>("x-unit-selector", ({ attrs }) => {
   const path = use.path(import.meta.url);
-  const dispatch = use.dispatch();
+  const dispatch = use.dispatch<Attrs>();
 
   return (
     <>
