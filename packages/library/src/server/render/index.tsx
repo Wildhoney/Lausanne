@@ -1,12 +1,11 @@
 import { VNode, createContext } from "preact";
 import { renderToString } from "preact-render-to-string";
 import { Env } from "../../global/use/index.js";
-import { EnvContext } from "../../global/use/types.js";
-import { Loaders } from "./types.js";
+import { Loaders, RenderOptions } from "./types.js";
 
 export const Loader = createContext<Set<Loaders>>(new Set());
 
-const envProps = {
+const serverOptions = {
   node: null,
   isServer: true,
   isClient: false,
@@ -14,14 +13,18 @@ const envProps = {
 
 export async function render(
   App: VNode,
-  options: Omit<EnvContext, "node" | "isServer" | "isClient">
-) {
+  options: RenderOptions
+): Promise<string> {
   const loaders = new Set<Loaders>();
 
   const tree = renderToString(
     <Loader.Provider value={loaders}>
-      <Env.Provider value={{ ...options, ...envProps }}>{App}</Env.Provider>
-    </Loader.Provider>
+      <Env.Provider value={{ ...options, ...serverOptions }}>
+        {App}
+      </Env.Provider>
+    </Loader.Provider>,
+    {},
+    { pretty: true }
   );
 
   if (loaders.size === 0) {
@@ -38,8 +41,21 @@ export async function render(
   );
 
   return renderToString(
-    <Loader.Provider value={data}>
-      <Env.Provider value={{ ...options, ...envProps }}>{App}</Env.Provider>
-    </Loader.Provider>
+    <>
+      <Loader.Provider value={data}>
+        <Env.Provider value={{ ...options, ...serverOptions }}>
+          {App}
+        </Env.Provider>
+      </Loader.Provider>
+
+      <script
+        type="module"
+        dangerouslySetInnerHTML={{
+          __html: `globalThis.swissData = ${JSON.stringify([...data])}`,
+        }}
+      />
+    </>,
+    {},
+    { pretty: true }
   );
 }

@@ -1,4 +1,4 @@
-import { useContext, useMemo } from "preact/hooks";
+import { useContext, useMemo, useRef } from "preact/hooks";
 import { Env, use as baseUse } from "../../global/use/index.js";
 import { LoaderResponse } from "../../global/use/types.js";
 import { dispatchEvent } from "../create/utils.js";
@@ -18,16 +18,29 @@ export const use = {
     );
   },
   loader<Initial, State>(
-    _: string,
+    id: string,
     loader: () => Promise<State>,
     initial: Initial,
     deps: any[]
   ): LoaderResponse<Initial, State> {
-    const [data, setData] = use.state<Initial | State>(initial);
-    const [loading, setLoading] = use.state<boolean>(true);
+    const preload = globalThis.swissData.find(
+      (datum: { id: string }) => datum.id === id
+    );
+
+    const isFirstRender = useRef<boolean>(true);
+    const [data, setData] = use.state<Initial | State>(
+      (preload?.value as State) ?? initial
+    );
+    const [loading, setLoading] = use.state<boolean>(false);
     const [error, setError] = use.state<null | Error>(null);
 
     use.effect(() => {
+      if (preload && isFirstRender.current) {
+        isFirstRender.current = false;
+        return;
+      }
+
+      isFirstRender.current = false;
       setLoading(true);
 
       loader()
