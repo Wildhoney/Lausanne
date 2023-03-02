@@ -2,31 +2,31 @@ import { VNode, h, createContext } from "preact";
 import { renderToString } from "preact-render-to-string";
 import { Env } from "../../global/use/index.js";
 import { EnvContext } from "../../global/use/types.js";
-import { Defers } from "./types.js";
+import { Loaders } from "./types.js";
 
-export const Deferred = createContext<Set<Defers>>(new Set());
+export const Loader = createContext<Set<Loaders>>(new Set());
 
 export async function render(App: VNode, options: Omit<EnvContext, "node">) {
-  const defers = new Set<Defers>();
+  const loaders = new Set<Loaders>();
 
   renderToString(
-    <Deferred.Provider value={defers}>
+    <Loader.Provider value={loaders}>
       <Env.Provider value={{ ...options, node: null }}>{App}</Env.Provider>
-    </Deferred.Provider>
+    </Loader.Provider>
   );
 
   const data = new Set(
     await Promise.all(
-      [...defers].map(async (defer) => {
-        const value = await defer.value;
-        return { ...defer, value };
+      [...loaders].map(async (loader) => {
+        const value = await loader.value;
+        return { ...loader, value };
       })
     )
   );
 
   return renderToString(
-    <Deferred.Provider value={data}>
+    <Loader.Provider value={data}>
       <Env.Provider value={{ ...options, node: null }}>{App}</Env.Provider>
-    </Deferred.Provider>
+    </Loader.Provider>
   );
 }

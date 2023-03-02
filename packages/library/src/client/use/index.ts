@@ -1,6 +1,6 @@
 import { useContext, useMemo } from "preact/hooks";
 import { Env, use as baseUse } from "../../global/use/index.js";
-import { DeferredFn, DeferredResponse } from "../../global/use/types.js";
+import { LoaderFn, LoaderResponse } from "../../global/use/types.js";
 import { dispatchEvent } from "../create/utils.js";
 
 export const use = {
@@ -17,12 +17,12 @@ export const use = {
       [env.node]
     );
   },
-  deferred<S, IS = unknown>(
+  loader<S, IS = unknown>(
     _: string,
-    fn: DeferredFn,
+    fn: LoaderFn,
     initialState: IS,
     deps: any[]
-  ): DeferredResponse<IS, S> {
+  ): LoaderResponse<IS, S> {
     const [data, setData] = use.state(initialState);
     const [loading, setLoading] = use.state<boolean>(true);
     const [error, setError] = use.state<null | Error>(null);
@@ -41,6 +41,6 @@ export const use = {
         });
     }, deps);
 
-    return { data, loading, error } as DeferredResponse<IS, S>;
+    return { data, loading, error } as LoaderResponse<IS, S>;
   },
 };

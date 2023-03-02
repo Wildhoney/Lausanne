@@ -7,8 +7,8 @@ import {
   DispatchEventPayload,
 } from "../../client/create/types.js";
 import { AttrsGeneric, SwissEvent } from "../../global/types/index.js";
-import { Deferred } from "../render/index.js";
-import { DeferredFn, DeferredResponse } from "../../global/use/types.js";
+import { Loader } from "../render/index.js";
+import { LoaderFn, LoaderResponse } from "../../global/use/types.js";
 
 export const use = {
   ...baseUse,
@@ -30,31 +30,31 @@ export const use = {
       void [name, payload, options];
     };
   },
-  deferred<S, IS = unknown>(
+  loader<S, IS = unknown>(
     id: string,
-    fn: DeferredFn,
+    fn: LoaderFn,
     initialState: IS,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _: any[]
-  ): DeferredResponse<IS, S> {
-    const defers = useContext(Deferred);
-    const data = [...defers].find((defer) => defer.id === id);
+  ): LoaderResponse<IS, S> {
+    const loaders = useContext(Loader);
+    const data = [...loaders].find((loader) => loader.id === id);
 
     if (data) {
       return {
         data: data.value,
         loading: false,
         error: null,
-      } as DeferredResponse<IS, S>;
+      } as LoaderResponse<IS, S>;
     }
 
-    const defer = fn();
-    defers.add({ id, value: defer });
+    const value = fn();
+    loaders.add({ id, value });
 
     return {
       data: initialState,
       loading: true,
       error: null,
-    } as DeferredResponse<IS, S>;
+    } as LoaderResponse<IS, S>;
   },
 };

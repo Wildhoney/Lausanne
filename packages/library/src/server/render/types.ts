@@ -1,1 +1,1 @@
-export type Defers = { id: string; value: Promise<unknown> | unknown };
+export type Loaders = { id: string; value: Promise<unknown> | unknown };

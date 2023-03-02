@@ -10,7 +10,7 @@ import Loading from "./components/loading/index.js";
 export default create<Attrs>("x-weather", ({ attrs }) => {
   const path = use.path(import.meta.url);
   const [unit, setUnit] = use.state<Unit>(Unit.Celsius);
-  const { data, loading } = use.deferred<Weather>(
+  const { data, loading } = use.loader<Weather>(
     `x-weather/${attrs.city}`,
     () => fetch(attrs.city),
     null,
