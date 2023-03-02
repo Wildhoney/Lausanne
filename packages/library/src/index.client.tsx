@@ -1,4 +1,4 @@
-export { VNode, JSX } from "preact";
+export { VNode } from "preact";
 export { use } from "./client/use/index.js";
 export { node } from "./global/node/index.js";
 export * as type from "./global/transformers/index.js";

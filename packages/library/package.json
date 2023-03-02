@@ -5,8 +5,14 @@
   "main": "./src/index.tsx",
   "types": "./dist/index.d.ts",
   "exports": {
-    "node": "./dist/index.server.js",
-    "types": "./dist/index.d.ts"
+    "node": {
+      "types": "./dist/index.server.d.ts",
+      "default": "./dist/index.server.js"
+    },
+    "default": {
+      "types": "./dist/index.client.d.ts",
+      "default": "./dist/index.client.js"
+    }
   },
   "scripts": {
     "build": "tsc",
