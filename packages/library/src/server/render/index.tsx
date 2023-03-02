@@ -1,4 +1,4 @@
-import { VNode, h, createContext } from "preact";
+import { VNode, createContext } from "preact";
 import { renderToString } from "preact-render-to-string";
 import { Env } from "../../global/use/index.js";
 import { EnvContext } from "../../global/use/types.js";

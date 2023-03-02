@@ -1,13 +1,13 @@
 // @ts-nocheck
 
-import { h, Component } from "preact";
+import { Component } from "preact";
 import { Attrs } from "../use/index.js";
 import { Props, State } from "./types.js";
 
 export default class SwissTree extends Component<Props, State> {
   state = { error: null };
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError(error: Error) {
     return { error };
   }
 

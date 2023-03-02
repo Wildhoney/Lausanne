@@ -1,12 +1,12 @@
 import { Props } from "./types.js";
-import { use, node } from "lausanne";
+import { use } from "lausanne";
 import { places } from "../../utils.js";
 
 export default function Places({ value }: Props) {
   const env = use.env();
 
-  const handleChange = use.callback((event) => {
-    env.node.setAttribute("city", event.target.value);
+  const handleChange = use.callback((event: Event) => {
+    env.node?.setAttribute("city", (event?.target as any).value);
   }, []);
 
   return (

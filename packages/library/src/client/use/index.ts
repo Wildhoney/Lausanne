@@ -1,6 +1,6 @@
 import { useContext, useMemo } from "preact/hooks";
 import { Env, use as baseUse } from "../../global/use/index.js";
-import { LoaderFn, LoaderResponse } from "../../global/use/types.js";
+import { LoaderResponse } from "../../global/use/types.js";
 import { dispatchEvent } from "../create/utils.js";
 
 export const use = {
@@ -17,20 +17,20 @@ export const use = {
       [env.node]
     );
   },
-  loader<S, IS = unknown>(
+  loader<Initial, State>(
     _: string,
-    fn: LoaderFn,
-    initialState: IS,
+    loader: () => Promise<State>,
+    initial: Initial,
     deps: any[]
-  ): LoaderResponse<IS, S> {
-    const [data, setData] = use.state(initialState);
+  ): LoaderResponse<Initial, State> {
+    const [data, setData] = use.state<Initial | State>(initial);
     const [loading, setLoading] = use.state<boolean>(true);
     const [error, setError] = use.state<null | Error>(null);
 
     use.effect(() => {
       setLoading(true);
 
-      fn()
+      loader()
         .then((response) => {
           setData(response);
           setLoading(false);
@@ -41,6 +41,6 @@ export const use = {
         });
     }, deps);
 
-    return { data, loading, error } as LoaderResponse<IS, S>;
+    return { data, loading, error } as LoaderResponse<Initial, State>;
   },
 };

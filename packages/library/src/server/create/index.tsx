@@ -11,8 +11,8 @@ export function create<Attrs extends AttrsGeneric = Record<string, never>>(
       name,
       attrs,
       h(
-        "template",
-        { shadowroot: "open" } as unknown,
+        "template" as any,
+        { shadowroot: "open" } as any,
         <SwissTree Tree={Tree} attrs={attrs} />
       )
     );

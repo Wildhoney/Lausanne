@@ -43,7 +43,8 @@ app.get("/", async (_, response) => {
               "lausanne": "/client/library/dist/index.client.js",
               "preact": "https://cdnjs.cloudflare.com/ajax/libs/preact/10.13.0/preact.module.min.js",
               "preact/hooks": "https://cdnjs.cloudflare.com/ajax/libs/preact/10.13.0/hooks.module.min.js",
-              "preact/compat": "https://cdnjs.cloudflare.com/ajax/libs/preact/10.13.0/compat.module.min.js"
+              "preact/compat": "https://cdnjs.cloudflare.com/ajax/libs/preact/10.13.0/compat.module.min.js",
+              "preact/jsx-runtime": "https://cdn.jsdelivr.net/npm/preact-jsx-runtime@1.2.0/jsx-runtime.min.js"
           }}
         </script>
 

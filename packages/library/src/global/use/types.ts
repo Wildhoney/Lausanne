@@ -16,10 +16,14 @@ export type AttrsReturn<Map extends MapGeneric> = {
   [K in keyof Map]: ReturnType<Map[K]>;
 };
 
-export type LoaderFn = (...args: any[]) => Promise<any>;
-
-export type LoaderResponse<InitialState, State> = {
-  error: Error | null;
-  loading: boolean;
-  data: InitialState | State;
-};
+export type LoaderResponse<Initial, State> =
+  | {
+      error: Error | null;
+      loading: true;
+      data: Initial;
+    }
+  | {
+      error: Error | null;
+      loading: false;
+      data: Awaited<State>;
+    };

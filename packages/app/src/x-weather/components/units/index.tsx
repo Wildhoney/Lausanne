@@ -9,7 +9,7 @@ export default function Units({ value, onChange }: Props): VNode {
 
       {/* <img src="https://openweathermap.org/img/wn/02n@2x.png" /> */}
       <button
-        class={value === Unit.Celsius && "active"}
+        class={value === Unit.Celsius ? "active" : ""}
         onClick={() => onChange(Unit.Celsius)}
       >
         celsius
@@ -17,7 +17,7 @@ export default function Units({ value, onChange }: Props): VNode {
       <div class="separator">/</div>
       <button
         aria-label=""
-        class={value === Unit.Fahrenheit && "active"}
+        class={value === Unit.Fahrenheit ? "active" : ""}
         onClick={() => onChange(Unit.Fahrenheit)}
       >
         fahrenheit

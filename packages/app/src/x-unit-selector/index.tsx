@@ -11,14 +11,14 @@ export default create<Attrs>("x-unit-selector", ({ attrs }) => {
       <section part="container">
         <button
           part="button"
-          class={Number(attrs.unit) === Unit.Celsius && "active"}
+          class={Number(attrs.unit) === Unit.Celsius ? "active" : ""}
           onClick={(): void => dispatch("UnitChange", { unit: Unit.Celsius })}
         >
           C&deg;
         </button>
         <button
           part="button"
-          class={Number(attrs.unit) === Unit.Fahrenheit && "active"}
+          class={Number(attrs.unit) === Unit.Fahrenheit ? "active" : ""}
           onClick={(): void =>
             dispatch("UnitChange", { unit: Unit.Fahrenheit })
           }

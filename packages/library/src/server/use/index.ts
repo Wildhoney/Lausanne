@@ -8,7 +8,7 @@ import {
 } from "../../client/create/types.js";
 import { AttrsGeneric, SwissEvent } from "../../global/types/index.js";
 import { Loader } from "../render/index.js";
-import { LoaderFn, LoaderResponse } from "../../global/use/types.js";
+import { LoaderResponse } from "../../global/use/types.js";
 
 export const use = {
   ...baseUse,
@@ -17,6 +17,7 @@ export const use = {
     const componentDir = parse(componentPath.replace("file://", "")).dir;
 
     return (resourcePath: string): string => {
+      if (!env.root) return "";
       const assetPath = join(componentDir, resourcePath).replace(env.root, "");
       return `${stripTrailingSlashes(env.path)}/${assetPath}`;
     };
@@ -30,13 +31,13 @@ export const use = {
       void [name, payload, options];
     };
   },
-  loader<S, IS = unknown>(
+  loader<Initial, State>(
     id: string,
-    fn: LoaderFn,
-    initialState: IS,
+    loader: () => Promise<State>,
+    initial: Initial,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _: any[]
-  ): LoaderResponse<IS, S> {
+  ): LoaderResponse<Initial, State> {
     const loaders = useContext(Loader);
     const data = [...loaders].find((loader) => loader.id === id);
 
@@ -45,16 +46,16 @@ export const use = {
         data: data.value,
         loading: false,
         error: null,
-      } as LoaderResponse<IS, S>;
+      } as LoaderResponse<Initial, State>;
     }
 
-    const value = fn();
+    const value = loader();
     loaders.add({ id, value });
 
     return {
-      data: initialState,
+      data: initial,
       loading: true,
       error: null,
-    } as LoaderResponse<IS, S>;
+    } as LoaderResponse<Initial, State>;
   },
 };
