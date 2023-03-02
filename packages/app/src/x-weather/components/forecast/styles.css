@@ -10,14 +10,8 @@ section.forecast img {
   max-width: 150px;
 }
 
-@container (max-width: 480px) {
-  section.forecast img {
-    display: none;
-  }
-}
-
 section.forecast p.description {
-  font-size: clamp(10px, 1vw, 16px);
+  font-size: clamp(12px, 1vw, 16px);
   font-style: italic;
   color: color-contrast(black);
 }

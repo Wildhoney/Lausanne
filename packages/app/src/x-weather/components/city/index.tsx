@@ -17,7 +17,9 @@ export default function City({
   return (
     <>
       <section class="city">
-        <Forecast city={city} unit={unit} weather={weather} />
+        <div class="forecast">
+          <Forecast city={city} unit={unit} weather={weather} />
+        </div>
 
         <div class="details">
           <Meta weather={weather} unit={unit} />
