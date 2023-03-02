@@ -12,14 +12,21 @@ const envProps = {
   isClient: false,
 };
 
-export async function render(App: VNode, options: Omit<EnvContext, "node" | "isServer" | "isClient">) {
+export async function render(
+  App: VNode,
+  options: Omit<EnvContext, "node" | "isServer" | "isClient">
+) {
   const loaders = new Set<Loaders>();
 
-  renderToString(
+  const tree = renderToString(
     <Loader.Provider value={loaders}>
       <Env.Provider value={{ ...options, ...envProps }}>{App}</Env.Provider>
     </Loader.Provider>
   );
+
+  if (loaders.size === 0) {
+    return tree;
+  }
 
   const data = new Set(
     await Promise.all(
