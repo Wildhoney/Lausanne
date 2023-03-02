@@ -1,12 +1,3 @@
-@import "./components/city/styles.css";
-@import "./components/units/styles.css";
-@import "./components/forecast/styles.css";
-@import "./components/places/styles.css";
-@import "./components/logo/styles.css";
-@import "./components/coordinates/styles.css";
-@import "./components/meta/styles.css";
-@import "./components/loading/styles.css";
-
 :host {
   display: flex;
   justify-content: center;

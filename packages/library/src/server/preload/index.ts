@@ -1,9 +1,16 @@
 export function preload(html: string): string {
-  const links = html.match(/(<link.*type="text\/css".+?\/>)/gi) ?? [];
-  const urls = links[0]?.match(/href="(.+?)"/gi);
+  const links = [
+    ...[
+      ...([
+        ...html.matchAll(/<link.*type="text\/css".*href="(.+?)".*\/>/gim),
+      ].map((item) => item[1]) ?? []),
+      ...([
+        ...html.matchAll(/<link.*href="(.+?)".*type="text\/css".*\/>/gim),
+      ].map((item) => item[1]) ?? []),
+    ],
+  ].flat();
 
-  return (
-    urls?.map((url) => `<link as="style" rel="preload" ${url} />`).join("\n") ??
-    ""
-  );
+  return links
+    .map((link) => `<link as="style" rel="preload" href="${link}" />`)
+    .join("\n");
 }

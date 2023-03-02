@@ -1,4 +1,4 @@
-import { VNode, node } from "lausanne";
+import { VNode, node, use } from "lausanne";
 import Coordinates from "../coordinates/index.js";
 import Forecast from "../forecast/index.js";
 import Meta from "../meta/index.js";
@@ -12,6 +12,8 @@ export default function City({
   unit,
   onUnitChange,
 }: Props): VNode {
+  const path = use.path(import.meta.url);
+
   return (
     <>
       <section class="city">
@@ -28,6 +30,10 @@ export default function City({
         onUnitChange={(event) => onUnitChange(event.detail.unit)}
       />
       <Coordinates value={weather.coord} />
+
+      <node.StyleSheet
+        href={path("../../../../src/x-weather/components/city/styles.css")}
+      />
     </>
   );
 }

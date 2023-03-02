@@ -19,7 +19,7 @@ export const use = {
     return (resourcePath: string): string => {
       if (!env.root) return "";
       const assetPath = join(componentDir, resourcePath).replace(env.root, "");
-      return `${stripTrailingSlashes(env.path)}/${assetPath}`;
+      return `${stripTrailingSlashes(env.path)}${assetPath}`;
     };
   },
   dispatch<Attrs>() {
