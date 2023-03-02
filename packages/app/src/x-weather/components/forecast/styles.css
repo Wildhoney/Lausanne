@@ -5,6 +5,12 @@ section.forecast {
   text-align: center;
 }
 
+@container (max-width: 480px) {
+  section.forecast {
+    padding: 40px 0;
+  }
+}
+
 section.forecast img {
   max-height: 150px;
   max-width: 150px;
@@ -13,7 +19,6 @@ section.forecast img {
 section.forecast p.description {
   font-size: clamp(12px, 1vw, 16px);
   font-style: italic;
-  color: color-contrast(black);
 }
 
 section.forecast p.description span {

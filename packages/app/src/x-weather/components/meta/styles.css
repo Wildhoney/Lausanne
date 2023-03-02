@@ -6,6 +6,12 @@ section.meta {
   grid-gap: 20px;
 }
 
+@container (max-width: 320px) {
+  section.meta {
+    display: none;
+  }
+}
+
 section.meta div.detail {
   padding: 10px;
   display: grid;

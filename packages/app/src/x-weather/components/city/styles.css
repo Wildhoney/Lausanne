@@ -9,6 +9,12 @@ section.city {
   position: relative;
 }
 
+@container (max-width: 480px) {
+  section.city {
+    grid-template-columns: 1fr;
+  }
+}
+
 section.city > section {
   padding: 20px;
 }
@@ -52,6 +58,17 @@ section.city div.details::after {
   box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.05);
 }
 
+@container (max-width: 480px) {
+  section.city div.details::after {
+    bottom: unset;
+    top: unset;
+    left: 0;
+    right: 0;
+    transform: translate(0, -10px) rotate(45deg);
+    box-shadow: -5px -5px 10px rgba(0, 0, 0, 0.05);
+  }
+}
+
 x-unit-selector {
   --offset: 30px;
 
@@ -60,6 +77,12 @@ x-unit-selector {
   right: 0;
   top: 0;
   transform: translate(var(--offset), 20px);
+}
+
+@container (max-width: 480px) {
+  x-unit-selector {
+    transform: translate(29px, 20px);
+  }
 }
 
 x-unit-selector::part(container) {
