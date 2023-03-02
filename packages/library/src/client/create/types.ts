@@ -6,6 +6,8 @@ export type RenderOptions = {
   path: null | string;
   root: null | string;
   node: null | HTMLElement;
+  isClient: boolean;
+  isServer: boolean;
 };
 
 export type ToCamelcase = { fromKebab: () => string; fromSnake: () => string };

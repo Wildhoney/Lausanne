@@ -6,12 +6,18 @@ import { Loaders } from "./types.js";
 
 export const Loader = createContext<Set<Loaders>>(new Set());
 
-export async function render(App: VNode, options: Omit<EnvContext, "node">) {
+const envProps = {
+  node: null,
+  isServer: true,
+  isClient: false,
+};
+
+export async function render(App: VNode, options: Omit<EnvContext, "node" | "isServer" | "isClient">) {
   const loaders = new Set<Loaders>();
 
   renderToString(
     <Loader.Provider value={loaders}>
-      <Env.Provider value={{ ...options, node: null }}>{App}</Env.Provider>
+      <Env.Provider value={{ ...options, ...envProps }}>{App}</Env.Provider>
     </Loader.Provider>
   );
 
@@ -26,7 +32,7 @@ export async function render(App: VNode, options: Omit<EnvContext, "node">) {
 
   return renderToString(
     <Loader.Provider value={data}>
-      <Env.Provider value={{ ...options, node: null }}>{App}</Env.Provider>
+      <Env.Provider value={{ ...options, ...envProps }}>{App}</Env.Provider>
     </Loader.Provider>
   );
 }

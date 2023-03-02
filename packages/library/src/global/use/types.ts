@@ -4,6 +4,8 @@ export type EnvContext = {
   path: null | string;
   root: null | string;
   node: null | HTMLElement;
+  isServer: boolean;
+  isClient: boolean;
 };
 
 export type AttrsContext = Record<string, string>;

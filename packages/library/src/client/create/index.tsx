@@ -18,6 +18,8 @@ export function create<Attrs extends AttrsGeneric = Record<string, never>>(
         path: window.location.origin,
         root: null,
         node: this,
+        isClient: true,
+        isServer: false,
       };
 
       connectedCallback() {

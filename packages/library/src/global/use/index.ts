@@ -14,6 +14,8 @@ export const Env = createContext<EnvContext>({
   path: null,
   root: null,
   node: null,
+  isServer: false,
+  isClient: false,
 });
 
 export const Attrs = createContext<AttrsContext>({});

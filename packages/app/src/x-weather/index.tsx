@@ -10,6 +10,8 @@ import Loading from "./components/loading/index.js";
 export default create<Attrs>("x-weather", ({ attrs }) => {
   const path = use.path(import.meta.url);
   const [unit, setUnit] = use.state<Unit>(Unit.Celsius);
+  const env = use.env();
+
   const { data, loading } = use.loader(
     `x-weather/${attrs.city}`,
     () => fetch(attrs.city),
@@ -33,7 +35,8 @@ export default create<Attrs>("x-weather", ({ attrs }) => {
         />
       )}
 
-      <Loading value={loading} />
+      {env.isClient && <Loading value={loading} />}
+
       <Logo />
 
       <node.StyleSheet href={path("../../src/x-weather/styles.css")} />
