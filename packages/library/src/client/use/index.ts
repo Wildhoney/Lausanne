@@ -21,11 +21,12 @@ export const use = {
     id: string,
     loader: () => Promise<State>,
     initial: Initial,
-    deps: any[]
+    deps: unknown[]
   ): LoaderResponse<Initial, State> {
-    const preload = globalThis.swissData.find(
-      (datum: { id: string }) => datum.id === id
-    );
+    console.log(globalThis.swissData.flat());
+    const preload = globalThis.swissData
+      .flat()
+      .find((datum: { id: string }) => datum.id === id);
 
     const isFirstRender = useRef<boolean>(true);
     const [data, setData] = use.state<Initial | State>(

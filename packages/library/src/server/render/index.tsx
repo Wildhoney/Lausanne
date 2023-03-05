@@ -51,7 +51,11 @@ export async function render(
       <script
         type="module"
         dangerouslySetInnerHTML={{
-          __html: `globalThis.swissData = ${JSON.stringify([...data])}`,
+          __html: `
+            const data = globalThis.swissData ?? [];
+            data.push(${JSON.stringify([...data])});
+            globalThis.swissData = data;
+          `,
         }}
       />
     </>,
