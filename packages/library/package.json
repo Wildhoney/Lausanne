@@ -15,7 +15,7 @@
     }
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && webpack && rm -rf dist/client",
     "format": "prettier . --write",
     "unit": "jest",
     "lint": "eslint src/** --fix",
@@ -48,6 +48,10 @@
     "preact-render-to-string": "5.2.6"
   },
   "devDependencies": {
-    "jest-environment-jsdom": "29.4.3"
+    "jest-environment-jsdom": "29.4.3",
+    "ts-loader": "9.4.2",
+    "webpack": "5.76.1",
+    "webpack-cli": "5.0.1",
+    "webpack-node-externals": "3.0.0"
   }
 }

@@ -23,7 +23,6 @@ export const use = {
     initial: Initial,
     deps: unknown[]
   ): LoaderResponse<Initial, State> {
-    console.log(globalThis.swissData.flat());
     const preload = globalThis.swissData
       .flat()
       .find((datum: { id: string }) => datum.id === id);
