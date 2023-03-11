@@ -1,9 +1,10 @@
-import { AttrsGeneric, SwissEvent } from "../../global/types/index.js";
-import { toCamelcase } from "../../global/utils/index.js";
-import type {
+import {
+  AttrsGeneric,
   DispatchEventOptions,
   DispatchEventPayload,
-} from "./types.js";
+  SwissEvent,
+} from "../../global/types/index.js";
+import { toCamelcase } from "../../global/utils/index.js";
 
 export const getAttributes = (attrs: NamedNodeMap): any =>
   Object.values(attrs).reduce((attrs, attr) => {

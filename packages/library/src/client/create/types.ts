@@ -9,8 +9,3 @@ export type RenderOptions = {
   isClient: boolean;
   isServer: boolean;
 };
-
-
-export type DispatchEventPayload = Record<string, unknown>;
-
-export type DispatchEventOptions = Record<string, unknown>;

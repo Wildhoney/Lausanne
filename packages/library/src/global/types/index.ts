@@ -8,3 +8,7 @@ export type SwissAttrs<Attrs extends AttrsGeneric> = {
 };
 
 export type SwissEvent<AttrKeys> = AttrKeys extends `on${infer E}` ? E : never;
+
+export type DispatchEventPayload = Record<string, unknown>;
+
+export type DispatchEventOptions = Record<string, unknown>;

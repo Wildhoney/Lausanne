@@ -3,10 +3,11 @@ import { parse, join } from "node:path";
 import { Env, use as baseUse } from "../../global/use/index.js";
 import { stripTrailingSlashes } from "./utils.js";
 import {
+  AttrsGeneric,
   DispatchEventOptions,
   DispatchEventPayload,
-} from "../../client/create/types.js";
-import { AttrsGeneric, SwissEvent } from "../../global/types/index.js";
+  SwissEvent,
+} from "../../global/types/index.js";
 import { Loader } from "../render/index.js";
 import { LoaderResponse } from "../../global/use/types.js";
 
